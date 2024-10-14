@@ -35,9 +35,9 @@ export default defineConfig({
       {
         text: 'Correr Fedired',
         items: [
-          { text: 'Requisitos Previos', link: '/running-pixelfed/prerequisites' },
-          { text: 'Instalación', link: '/running-pixelfed/installation' },
-          { text: 'Actualización', link: '/running-pixelfed/upgrade' },
+          { text: 'Requisitos Previos', link: '/running-fedired/prerequisites' },
+          { text: 'Instalación', link: '/running-fedired/installation' },
+          { text: 'Actualización', link: '/running-fedired/upgrade' },
         ]
       },
       {
