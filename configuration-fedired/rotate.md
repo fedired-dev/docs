@@ -1,6 +1,6 @@
 ---
-title = "Guia de instalacion"
-summary = "Como configurar todo lo que necesitas para ejecutar tu propio servidor Fedired."
+title = "Rotar registros"
+summary = "Aprende como rotar los registros de tus archivos."
 weight = 20
 [menu]
 [menu.docs]
