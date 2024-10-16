@@ -40,6 +40,15 @@ export default defineConfig({
           { text: 'Actualización', link: '/running-fedired/upgrade' },
         ]
       },
+            {
+        text: 'Ajustes Recomendados',
+        items: [
+          { text: 'Rotar Registros', link: '/configuration/rotate' },
+          { text: 'Configuración de PostgreSQL', link: '/configuration/database' },
+          { text: 'Personalización', link: '/configuration/personalization' },
+          { text: 'Consejos y Trucos', link: '/configuration/tips' },
+        ]
+      },
       {
         text: 'API REST',
         items: [
