@@ -1,6 +1,6 @@
 ---
-title = "Guia de instalacion"
-summary = "Como configurar todo lo que necesitas para ejecutar tu propio servidor Fedired."
+title = "Ajustes de Bases de datos"
+summary = "Como configurar correctamente la base de datos de PostgreSQL."
 weight = 20
 [menu]
 [menu.docs]
