@@ -4,7 +4,7 @@ summary = "Consejos y trucos de configuracion de Fedired."
 weight = 20
 [menu]
 [menu.docs]
-identifier = "admin/installation"
+identifier = "admin/tips"
 parent = "admin"
 ---
 
