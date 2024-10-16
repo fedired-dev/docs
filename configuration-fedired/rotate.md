@@ -4,7 +4,7 @@ summary = "Como configurar todo lo que necesitas para ejecutar tu propio servido
 weight = 20
 [menu]
 [menu.docs]
-identifier = "admin/installation"
+identifier = "admin/rotate"
 parent = "admin"
 ---
 
