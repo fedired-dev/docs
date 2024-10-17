@@ -7,7 +7,7 @@ weight = 10
 identifier = "admin/prerequisites"
 parent = "admin"
 ---
-## Requisitos Previos
+# Requisitos Previos
 
 - **Servidor**: Se recomienda un servidor con al menos 1 CPU, 2GB de RAM y 20GB de espacio en disco.
 - **Sistema Operativo**: Ubuntu Server (18.04 o superior).
