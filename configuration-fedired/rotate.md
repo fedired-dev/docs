@@ -8,7 +8,7 @@ identifier = "admin/rotate"
 parent = "admin"
 ---
 
-## Rotar registros
+# Rotar registros
 
 A medida que el servidor se ejecuta durante más tiempo, el tamaño de los archivos de registro aumenta y llena el espacio del disco. Para evitarlo, debe configurar una rotación de registros (eliminación automática de registros antiguos).
 
