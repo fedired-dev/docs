@@ -8,7 +8,7 @@ identifier = "admin/installation"
 parent = "admin"
 ---
 
-### Instalar en sistemas que no sean Linux
+# Instalar en sistemas que no sean Linux
 
 No probamos Fedired en sistemas que no sean Linux, por lo que te recomendamos que instales Fedired en un entorno de este tipo **solo si puedes solucionar los problemas tú mismo**. No hay ningún tipo de soporte. Dicho esto, es posible instalar Fedired en algunos sistemas que no sean Linux.
 
