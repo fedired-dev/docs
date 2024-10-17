@@ -43,10 +43,10 @@ export default defineConfig({
             {
         text: 'Ajustes Recomendados',
         items: [
-          { text: 'Rotar Registros', link: '/configuration/rotate' },
-          { text: 'Configuración de PostgreSQL', link: '/configuration/database' },
-          { text: 'Personalización', link: '/configuration/personalization' },
-          { text: 'Consejos y Trucos', link: '/configuration/tips' },
+          { text: 'Rotar Registros', link: '/configuration-fedired/rotate' },
+          { text: 'Configuración de PostgreSQL', link: '/configuration-fedired/database' },
+          { text: 'Personalización', link: '/configuration-fedired/personalization' },
+          { text: 'Consejos y Trucos', link: '/configuration-fedired/tips' },
         ]
       },
       {
