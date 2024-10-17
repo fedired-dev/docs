@@ -8,7 +8,7 @@ identifier = "admin/database"
 parent = "admin"
 ---
 
-## Ajustar la configuración de la base de datos
+# Ajustar la configuración de la base de datos
 
 La configuración predeterminada de PostgreSQL no es adecuada para ejecutar un servidor Fedired. Por lo tanto, se recomienda encarecidamente que utilice [PGTune](https://pgtune.leopard.in.ua/) para modificar la configuración.
 
