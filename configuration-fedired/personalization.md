@@ -8,7 +8,7 @@ identifier = "admin/personalization"
 parent = "admin"
 ---
 
-## Personalizar
+# Personalizar
 
 - Para agregar CSS personalizado para todos los usuarios, edite `./custom/assets/instance.css`.
 - Para agregar recursos estáticos (como imágenes para la pantalla de inicio), colóquelos en el directorio `./custom/assets/`. Luego estarán disponibles en `https://yourserver.tld/static-assets/filename.ext`.
