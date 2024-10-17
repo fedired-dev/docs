@@ -8,7 +8,7 @@ identifier = "admin/tips"
 parent = "admin"
 ---
 
-## Consejos y trucos
+# Consejos y trucos
 
 - Al editar el archivo de configuración, no complete los ajustes en la parte inferior. Están diseñados *solo* para hospedaje administrado, no para hospedaje propio. Es mucho mejor configurar esos ajustes en el panel de control de Fedired.
 - El puerto 3000 (usado en la configuración predeterminada) podría ya estar en uso en su servidor para otra cosa. Para encontrar un puerto abierto para Fedired, ejecute `for p in {3000..4000}; do ss -tlnH | tr -s ' ' | cut -d" " -sf4 | grep -q "${p}$" || echo "${p}"; done | head -n 1`. Reemplace 3000 con el puerto mínimo y 4000 con el puerto máximo si lo necesita.
