@@ -12,18 +12,16 @@ parent = "admin"
 
 No probamos Fedired en sistemas que no sean Linux, por lo que te recomendamos que instales Fedired en un entorno de este tipo **solo si puedes solucionar los problemas tú mismo**. No hay ningún tipo de soporte. Dicho esto, es posible instalar Fedired en algunos sistemas que no sean Linux.
 
-<details>
 
-<summary>Posible configuración en FreeBSD (a partir de la versión<code>20240725</code>)</summary>
+> ⚠️ **Advertencia** Posible <a href="https://github.com/fedired-dev/fedired-docker/blob/main/docs/container.md" target="_blank">configuración en Docker</a> esta forma de instalacion aun esta en Beta y puede no funcionar como se espera.
 
-Puede instalar Fedired en FreeBSD agregando estos pasos adicionales a las instrucciones estándar:
 
 1. Instalar el paquete `vips`
 2. Añade el siguiente bloque a [`package.json`](../package.json)
     ```json
       "pnpm": {
         "overrides": {
-          "rollup": "npm:@rollup/wasm-node
+          "rollup": "npm:@rollup/wasm-node"
         }
       }
     ```
