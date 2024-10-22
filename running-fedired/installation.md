@@ -16,46 +16,6 @@ No probamos Fedired en sistemas que no sean Linux, por lo que te recomendamos qu
 > ⚠️ **Advertencia** Posible <a href="https://github.com/fedired-dev/fedired-docker/blob/main/docs/container.md" target="_blank">configuración en Docker</a> esta forma de instalacion aun esta en Beta y puede no funcionar como se espera.
 
 
-1. Instalar el paquete `vips`
-2. Añade el siguiente bloque a [`package.json`](../package.json)
-    ```json
-      "pnpm": {
-        "overrides": {
-          "rollup": "npm:@rollup/wasm-node"
-        }
-      }
-    ```
-3. Crear un script rc para Fedired
-    ```sh
-    #!/bin/sh
-
-    # PROVIDE: fedired
-    # REQUIRE: DAEMON redis caddy postgresql
-    # KEYWORD: shutdown
-
-    . /etc/rc.subr
-
-    name=fedired
-    rcvar=fedired_enable
-
-    desc="Fedired daemon"
-
-    load_rc_config ${name}
-
-    : ${fedired_chdir:="/path/to/fedired/local/repository"}
-    : ${fedired_env:="npm_config_cache=/tmp NODE_ENV=production NODE_OPTIONS=--max-old-space-size=3072"}
-
-    pidfile="/var/run/${name}.pid"
-    command=/usr/sbin/daemon
-    command_args="-f -S -u fedired -P ${pidfile} /usr/local/bin/pnpm run start"
-
-    run_rc_command "$1"
-    ```
-
-</details>
-
-Por favor, háganos saber si ha implementado Fedired en un entorno curioso :smile:
-
 
 ## 1. Instalar dependencias en Linux (Ubuntu Server)
 
