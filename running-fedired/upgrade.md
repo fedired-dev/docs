@@ -23,7 +23,7 @@ cd ~/fedired
 ```sh
 git stash
 git pull --ff origin main
-orepack prepare pnpm@latest --activate
+corepack prepare pnpm@latest --activate
 pnpm install --frozen-lockfile
 NODE_ENV='production' NODE_OPTIONS='--max_old_space_size=3072' pnpm run rebuild
 pnpm run migrate
