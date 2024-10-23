@@ -23,6 +23,6 @@ features:
   details: >-
     Reporta errores que
     encuentres en el codigo
-  <a href="https://github.com/fedired-dev/fedired/issues/" target="_blank">
+  link: https://github.com/fedired-dev/fedired/issues/
 ---
 
