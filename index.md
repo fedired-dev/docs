@@ -20,7 +20,7 @@ hero:
     link: /running-fedired/installation.md
   - theme: alt
     text: Actualizacion
-    link: /tutorial/update.md
+    link: /running-fedired/update.md
   - theme: alt
     text: GitHub
     link: https://github.com/fedired-dev/docs
