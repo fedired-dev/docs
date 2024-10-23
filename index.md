@@ -7,9 +7,7 @@ hero:
   text: Una red social descentralizada 
   tagline: >-
     Una plataforma de TypeScript y Vue para construir redes sociales descentralizadas por <a style="border-bottom: 2px solid;"
-    href="https://about.fedired.com/">Fedired Project</a> utilizando el protocolo <a style="border-bottom: 2px solid;"
-    href="https://www.w3.org/TR/activitypub/"
-    >ActivityPub</a>
+    href="https://about.fedired.com/">Fedired Project</a>
   image: /logo.png
   actions:
   - theme: brand
