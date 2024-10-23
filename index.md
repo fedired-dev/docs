@@ -13,16 +13,15 @@ hero:
   image: /logo.png
   actions:
   - theme: brand
-    text: Que es Fedired?
-    link: https://about.fedired.com
-  - theme: alt
-    text: Requisitos de Instalación 
+    text: Instalación 
     link: /running-fedired/installation.md
-  - theme: alt
-    text: Actualizacion
-    link: /running-fedired/update.md
-  - theme: alt
-    text: GitHub
-    link: https://github.com/fedired-dev/docs
+  
 
+features:
+- icon: 🐛
+  title: Reportar Error
+  details: >-
+    <a href="https://github.com/fedired-dev/fedired/issues/">Reporta errores</a> que
+    encuentres en el codigo
+    
 ---
