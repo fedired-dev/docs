@@ -1,13 +1,12 @@
 [build]
   command = "npm run docs:build"
   publish = ".vitepress/dist"
-  node_version = "18.12.0"
+  node_version = "18.12.0"  # Mantén esta versión
 
 [build.environment]
-  NODE_VERSION = "16"
+  NODE_VERSION = "18.12.0"   # Cambia esto a 18.12.0 para que coincida
 
 [[redirects]]
   from = "/*"
   to = "/index.md"
   status = 200
-
