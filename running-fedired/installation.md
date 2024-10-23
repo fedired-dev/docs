@@ -123,6 +123,7 @@ sudo apt install ffmpeg
 1. Crear un usuario para Fedired y cambiar de usuario
    ```sh
    sudo useradd --create-home --user-group --shell /bin/bash fedired
+   sudo passwd fedired
    sudo su --login fedired
    
    # check the current working directory
