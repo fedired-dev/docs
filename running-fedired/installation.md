@@ -69,15 +69,16 @@ psql --version
 Las instrucciones de instalación de PGroonga se pueden encontrar en [esta pagina](https://pgroonga.github.io/install/).
 
 ```sh
-wget "https://apache.jfrog.io/artifactory/arrow/$(lsb_release --id --short | tr 'A-Z' 'a-z')/apache-arrow-apt-source-latest-$(lsb_release --codename --short).deb"
-sudo apt install "./apache-arrow-apt-source-latest-$(lsb_release --codename --short).deb"
-wget "https://packages.groonga.org/debian/groonga-apt-source-latest-$(lsb_release --codename --short).deb"
-sudo apt install "./groonga-apt-source-latest-$(lsb_release --codename --short).deb"
 sudo apt update
-sudo apt install postgresql-16-pgdg-pgroonga
+sudo apt install -y build-essential postgresql-server-dev-16 libgroonga-dev
+git clone --recursive https://github.com/pgroonga/pgroonga.git
+cd pgroonga
+make
+sudo make install
+ls /usr/share/postgresql/16/extension/
 
-rm "apache-arrow-apt-source-latest-$(lsb_release --codename --short).deb" "groonga-apt-source-latest-$(lsb_release --codename --short).deb"
 ```
+Deberías ver un archivo llamado pgroonga.control entre otros archivos de extensión.
 
 ### Redis
 
