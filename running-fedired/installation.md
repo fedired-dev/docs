@@ -8,16 +8,9 @@ identifier = "admin/installation"
 parent = "admin"
 ---
 
-# Instalar en sistemas que no sean Linux
+> **No sabemos si funciona en otros sistemas**
 
-No probamos Fedired en sistemas que no sean Linux, por lo que te recomendamos que instales Fedired en un entorno de este tipo **solo si puedes solucionar los problemas tú mismo**. No hay ningún tipo de soporte. Dicho esto, es posible instalar Fedired en algunos sistemas que no sean Linux.
-
-
-> ⚠️ **Advertencia** Posible <a href="https://github.com/fedired-dev/fedired-docker/blob/main/docs/container.md" target="_blank">configuración en Docker</a> esta forma de instalacion aun esta en Beta y puede no funcionar como se espera.
-
-
-
-## 1. Instalar dependencias en Linux (Ubuntu Server)
+# 1. Instalar dependencias en Linux (Ubuntu Server)
 
 Asegúrese de que puede utilizar el comando `sudo` antes de continuar.
 
@@ -33,11 +26,15 @@ sudo apt install build-essential python3 curl wget git lsb-release
 Las instrucciones se pueden encontrar en [Este repositorio](https://github.com/nodesource/distributions).
 
 ```sh
-NODE_MAJOR=20
-curl -fsSL "https://deb.nodesource.com/setup_${NODE_MAJOR}.x" | sudo -E bash -
-sudo apt install nodejs
+sudo apt-get install -y curl
 
-# check version
+curl -fsSL https://deb.nodesource.com/setup_23.x -o nodesource_setup.sh
+
+sudo -E bash nodesource_setup.sh
+
+sudo apt-get install -y nodejs
+
+# version
 node --version
 ```
 
@@ -46,7 +43,7 @@ También es necesario habilitar `pnpm`.
 sudo corepack enable
 corepack prepare pnpm@latest --activate
 
-# check version
+# version
 pnpm --version
 ```
 
@@ -84,11 +81,18 @@ Deberías ver un archivo llamado pgroonga.control entre otros archivos de extens
 
 Las instrucciones se pueden encontrar en [esta pagina](https://redis.io/docs/install/install-redis/).
 
+Agregue el repositorio al índice APT, actualícelo e instale Redis:
+
 ```sh
+sudo apt-get install lsb-release curl gpg
 curl -fsSL https://packages.redis.io/gpg | sudo gpg --dearmor -o /usr/share/keyrings/redis-archive-keyring.gpg
+sudo chmod 644 /usr/share/keyrings/redis-archive-keyring.gpg
 echo "deb [signed-by=/usr/share/keyrings/redis-archive-keyring.gpg] https://packages.redis.io/deb $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/redis.list
-sudo apt update
-sudo apt install redis
+sudo apt-get update
+sudo apt-get install redis
+
+sudo systemctl enable redis-server
+sudo systemctl start redis-server
 
 sudo systemctl enable --now redis-server
 
