@@ -14,15 +14,16 @@ La configuración predeterminada de PostgreSQL no es adecuada para ejecutar un s
 
 A continuación se muestra un conjunto de ejemplos de parámetros que puede proporcionar a PGTune:
 
-|             Parámetro | Valor                                                  |
-|----------------------:|---------------------------------------------------------|
-|            DB version | 16 (your PostgreSQL major version)                      |
-|               OS Type | Linux                                                   |
-|               DB Type | Data warehouse                                          |
-|          Total Memory | [total physical memory] minus 700 MB                    |
-|        Number of CPUs | number of CPU threads (or lower value if you have many) |
-| Number of connections | 200                                                     |
-|          Data storage | SSD storage                                             |
+| **Parámetro**           | **Valor**                                               |
+|------------------------:|---------------------------------------------------------|
+| **Base de Datos**        | PostgreSQL versión 16                                   |
+| **Tipo de SO**           | Linux (Ubuntu Server Recomendado)                       |
+| **Tipo de BD**           | Almacén de datos (Data warehouse)                       |
+| **Memoria Total**        | Memoria física minimo 700 MB                        |
+| **Número de CPUs**       | Número de hilos de CPU (o un valor menor si se tienen muchos) |
+| **Número de conexiones** | 200                                                     |
+| **Almacenamiento de datos** | Almacenamiento en SSD                                |
+
 
 Dado que un servidor Fedired no es un servidor de base de datos dedicado, asegúrese de dejar algo de espacio en la memoria para otro software como Fedired, Redis y proxy inverso.
 
