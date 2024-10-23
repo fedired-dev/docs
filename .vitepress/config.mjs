@@ -38,7 +38,7 @@ export default defineConfig({
         items: [
           { text: 'Requisitos Previos', link: '/running-fedired/prerequisites' },
           { text: 'Instalación', link: '/running-fedired/installation' },
-          { text: 'Actualización', link: '/running-fedired/upgrade' },
+          { text: 'Actualización', link: '/running-fedired/update' },
         ]
       },
             {
