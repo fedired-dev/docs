@@ -24,5 +24,13 @@ features:
     Reporta errores que
     encuentres en el codigo
   link: https://github.com/fedired-dev/fedired/issues/
+
+- icon: 🔗
+  title: Utiliza nuestra API
+  details: >-
+    Puedes encontrar referencia de
+    uso de nuestra API
+  link: https://fedired.com/api-doc/
+
 ---
 
