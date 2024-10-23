@@ -16,7 +16,8 @@ export default defineConfig({
 
     // https://vitepress.dev/reference/default-theme-config
     nav: [
-      { text: 'fedired.com', link: 'https://fedired.com' },
+      { text: 'Referencia API', link: 'https://fedired.com/api-doc/' },
+      { text: 'Fedired Social Oficial', link: 'https://fedired.com' },
     ],
 
     search: {
