@@ -1,10 +1,10 @@
 ---
-title = "Troubleshooting"
-summary = "Frequently asked questions about things going wrong"
+title = "Actualizacion"
+summary = "Guia de Actualizaciones para Fedired"
 weight = 50
 [menu]
 [menu.docs]
-identifier = "admin/troubleshooting"
+identifier = "admin/update"
 parent = "admin"
 ---
 
