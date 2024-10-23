@@ -21,7 +21,13 @@ features:
 - icon: 🐛
   title: Reportar Error
   details: >-
-    <a href="https://github.com/fedired-dev/fedired/issues/">Reporta errores</a> que
+    Reporta errores que
     encuentres en el codigo
-    
+  link: https://github.com/fedired-dev/fedired/issues/
+    link: https://github.com/fedired-dev/fedired/issues/
+  {{ edit_1 }}
+
 ---
+
+ {{ edit_1 }}
+  target="_blank"
