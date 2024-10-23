@@ -24,3 +24,5 @@ hero:
   - theme: alt
     text: GitHub
     link: https://github.com/fedired-dev/docs
+
+---
