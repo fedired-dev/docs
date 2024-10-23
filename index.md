@@ -3,18 +3,24 @@
 layout: home
 
 hero:
-  name: "Documentacion de Fedired"
-  text: ""
-  tagline: "Documentacion de Fedired"
+  name: Fedired
+  text: Una red social descentralizada 
+  tagline: >-
+    Una plataforma de TypeScript y Vue para construir redes sociales descentralizadas por <a style="border-bottom: 2px solid;"
+    href="https://about.fedired.com/">Fedired Project</a> utilizando el protocolo <a style="border-bottom: 2px solid;"
+    href="https://www.w3.org/TR/activitypub/"
+    >ActivityPub</a>
+  image: /logo.png
   actions:
-    - theme: brand
-      text: Introduccion
-      link: /project/introduction
-    - theme: alt
-      text: Ajustes Recomendados
-      link: /configuration-fedired/tips
-    - theme: alt
-      text: Sobre Fedired
-      link: https://about.fedired.com/
----
-
+  - theme: brand
+    text: Que es Fedired?
+    link: https://about.fedired.com
+  - theme: alt
+    text: Requisitos de Instalación 
+    link: /running-fedired/installation.md
+  - theme: alt
+    text: Actualizacion
+    link: /tutorial/update.md
+  - theme: alt
+    text: GitHub
+    link: https://github.com/fedired-dev/docs
