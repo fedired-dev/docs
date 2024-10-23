@@ -11,13 +11,10 @@ hero:
       text: Introduccion
       link: /project/introduction
     - theme: alt
-      text: Guia de Instalacion
-      link: /running-fedired/prerequisites
-    - theme: alt
       text: Ajustes Recomendados
       link: /configuration-fedired/tips
     - theme: alt
-      text: API Documentation
-      link: https://fedired.com/api-doc/
+      text: Sobre Fedired
+      link: https://about.fedired.com/
 ---
 
