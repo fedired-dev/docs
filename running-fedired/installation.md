@@ -305,7 +305,6 @@ En esta instrucción, usamos [Caddy](https://caddyserver.com/) para que el servi
 
 ¡Disfruta de tu nuevo servidor de Fedired! 🎈
 
-Tu experiencia de hosting está ahora optimizada para ofrecerte un rendimiento excepcional. Aprovecha todas las características que hemos preparado para ti y no dudes en contactarnos si necesitas asistencia.
 
 ¡Bienvenido a la comunidad de Fedired! 🚀
 
