@@ -33,6 +33,7 @@ export default defineConfig({
         text: '',
         items: [
           { text: 'Introducción', link: '/project/introduction' },
+          { text: 'Control de Versiones', link: '/project/versions' },
         ]
       },
       {
