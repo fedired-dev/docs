@@ -37,6 +37,7 @@ export default defineConfig({
       {
         text: 'Correr Fedired',
         items: [
+          { text: 'Inicio', link: '/' },
           { text: 'Requisitos Previos', link: '/running-fedired/prerequisites' },
           { text: 'Instalación', link: '/running-fedired/installation' },
           { text: 'Actualización', link: '/running-fedired/update' },
