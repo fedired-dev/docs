@@ -16,6 +16,7 @@ export default defineConfig({
 
     // https://vitepress.dev/reference/default-theme-config
     nav: [
+      { text: 'Inicio', link: '/' },
       { text: 'Ayuda a Traducir Fedired', link: 'https://crowdin.com/project/fedired/' },
       { text: 'Referencia API', link: 'https://fedired.com/api-doc/' },
       { text: 'Fedired Social Oficial', link: 'https://fedired.com' },
@@ -37,7 +38,6 @@ export default defineConfig({
       {
         text: 'Correr Fedired',
         items: [
-          { text: 'Inicio', link: '/' },
           { text: 'Requisitos Previos', link: '/running-fedired/prerequisites' },
           { text: 'Instalación', link: '/running-fedired/installation' },
           { text: 'Actualización', link: '/running-fedired/update' },
