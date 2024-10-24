@@ -15,6 +15,13 @@ hero:
   
 
 features:
+- icon: 🅱️
+  title: Programa Beta
+  details: >-
+    Convierte en tester en 
+    nuestro programa Beta
+  link: https://beta.fedired.com/
+
 - icon: 🐛
   title: Reportar Error
   details: >-
