@@ -53,9 +53,9 @@ export default defineConfig({
         ]
       },
       {
-        text: 'API REST',
+        text: 'Administradores',
         items: [
-          { text: 'API de Fedired', link: 'https://fedired.com/api-doc/' },
+          { text: 'IMPORTANTE', link: '/for-admins/important' },
         ]
       },
     ],
