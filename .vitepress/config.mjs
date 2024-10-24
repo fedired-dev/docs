@@ -12,7 +12,7 @@ export default defineConfig({
       dark: '/logo-white.png'
     },
 
-    siteTitle: 'Docs',
+    siteTitle: '',
 
     // https://vitepress.dev/reference/default-theme-config
     nav: [
