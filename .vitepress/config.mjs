@@ -16,6 +16,7 @@ export default defineConfig({
 
     // https://vitepress.dev/reference/default-theme-config
     nav: [
+      { text: 'Ayuda a Traducir Fedired', link: 'https://crowdin.com/project/fedired/' },
       { text: 'Referencia API', link: 'https://fedired.com/api-doc/' },
       { text: 'Fedired Social Oficial', link: 'https://fedired.com' },
     ],
