@@ -15,12 +15,12 @@ hero:
   
 
 features:
-- icon: 🅱️
-  title: Programa Beta
+- icon: 🆘
+  title: Ayudanos
   details: >-
-    Convierte en tester en 
-    nuestro programa Beta
-  link: https://beta.fedired.com/
+    Tenemos problema para
+    actualizar Fedired
+  link: https://github.com/orgs/fedired-dev/discussions/12
 
 - icon: 🐛
   title: Reportar Error
