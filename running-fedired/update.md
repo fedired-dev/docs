@@ -24,6 +24,8 @@ cd ~/fedired
 git stash
 git pull --ff origin main
 corepack prepare pnpm@latest --activate
+rm pnpm-lock.yaml
+pnpm install --no-frozen-lockfile
 pnpm install --frozen-lockfile
 NODE_ENV='production' NODE_OPTIONS='--max_old_space_size=3072' pnpm run rebuild
 pnpm run migrate
