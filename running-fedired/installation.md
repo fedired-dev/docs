@@ -65,14 +65,21 @@ psql --version
 
 Las instrucciones de instalación de PGroonga se pueden encontrar en [esta pagina](https://pgroonga.github.io/install/).
 
+Agregar el repositorio de Groonga: Groonga proporciona un repositorio oficial para instalar la versión más reciente. Puedes agregarlo de la siguiente manera:
+
 ```sh
 sudo apt update
-sudo apt install -y build-essential postgresql-server-dev-16 libgroonga-dev
-git clone --recursive https://github.com/pgroonga/pgroonga.git
+sudo apt-get install -y software-properties-common
+sudo add-apt-repository ppa:groonga/ppa
+sudo apt-get update
+
+sudo apt-get install groonga
 cd pgroonga
-make
+make clean
+make 
 sudo make install
-ls /usr/share/postgresql/16/extension/
+
+
 
 ```
 Deberías ver un archivo llamado pgroonga.control entre otros archivos de extensión.
