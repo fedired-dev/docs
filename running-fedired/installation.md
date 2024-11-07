@@ -74,6 +74,8 @@ sudo add-apt-repository ppa:groonga/ppa
 sudo apt-get update
 
 sudo apt-get install groonga
+sudo apt-get install build-essential libboost-all-dev libprotobuf-dev libprotobuf-c-dev
+
 cd pgroonga
 make clean
 make 
