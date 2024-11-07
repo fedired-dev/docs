@@ -10,7 +10,7 @@ parent = "admin"
 # Requisitos Previos
 
 - **Servidor**: Se recomienda un servidor con al menos 1 CPU, 2GB de RAM y 20GB de espacio en disco.
-- **Sistema Operativo**: Ubuntu Server (20.04 o superior).
+- **Sistema Operativo**: Debian 12 (recomendado).
 - **Acceso a la Terminal**: Acceso root o sudo en el servidor.
 - **Nombre de Dominio**: Un dominio válido que apunte a tu servidor.
 

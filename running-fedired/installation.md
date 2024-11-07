@@ -10,7 +10,7 @@ parent = "admin"
 
 > **No sabemos si funciona en otros sistemas**
 
-# 1. Instalar dependencias en Linux (Ubuntu Server)
+# 1. Instalar dependencias en Linux (Debian)
 
 Asegúrese de que puede utilizar el comando `sudo` antes de continuar.
 
@@ -26,16 +26,13 @@ sudo apt install build-essential python3 curl wget git lsb-release
 Las instrucciones se pueden encontrar en [Este repositorio](https://github.com/nodesource/distributions).
 
 ```sh
-sudo apt-get install -y curl
+NODE_MAJOR=20
+curl -fsSL "https://deb.nodesource.com/setup_${NODE_MAJOR}.x" | sudo -E bash -
+sudo apt install nodejs
 
-curl -fsSL https://deb.nodesource.com/setup_23.x -o nodesource_setup.sh
-
-sudo -E bash nodesource_setup.sh
-
-sudo apt-get install -y nodejs
-
-# version
+# check version
 node --version
+
 ```
 
 También es necesario habilitar `pnpm`.
@@ -52,15 +49,18 @@ pnpm --version
 Las instrucciones de instalación de PostgreSQL se pueden encontrar en [esta pagina](https://www.postgresql.org/download/).
 
 ```sh
-sudo sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt/ $(lsb_release -c | awk "{print $2}")-pgdg main" > /etc/apt/sources.list.d/pgdg.list'
+sudo sh -c 'echo "deb https://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list'
 
 wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
 
 sudo apt update
 sudo apt install postgresql-16
 
+sudo systemctl enable --now postgresql
+
 # check version
 psql --version
+
 ```
 
 Las instrucciones de instalación de PGroonga se pueden encontrar en [esta pagina](https://pgroonga.github.io/install/).
@@ -69,24 +69,14 @@ Agregar el repositorio de Groonga: Groonga proporciona un repositorio oficial pa
 
 ```sh
 
-sudo apt install -y software-properties-common
-sudo add-apt-repository ppa:groonga/ppa
+wget "https://apache.jfrog.io/artifactory/arrow/$(lsb_release --id --short | tr 'A-Z' 'a-z')/apache-arrow-apt-source-latest-$(lsb_release --codename --short).deb"
+sudo apt install "./apache-arrow-apt-source-latest-$(lsb_release --codename --short).deb"
+wget "https://packages.groonga.org/debian/groonga-apt-source-latest-$(lsb_release --codename --short).deb"
+sudo apt install "./groonga-apt-source-latest-$(lsb_release --codename --short).deb"
 sudo apt update
-sudo apt install postgresql-16-pgroonga
+sudo apt install postgresql-16-pgdg-pgroonga
 
-psql -U postgres -c "SELECT * FROM pg_extension WHERE extname = 'pgroonga';"
-
-sudo nano /etc/postgresql/16/main/postgresql.conf
-```
-
-Busca y descomenta la línea shared_preload_libraries (si está comentada) para incluir pgroonga:
-
-'shared_preload_libraries = 'pgroonga'
-
-Después de modificar la configuración, necesitas reiniciar el servicio de PostgreSQL para que los cambios tengan efecto.
-
-```sh
-sudo systemctl restart postgresql
+rm "apache-arrow-apt-source-latest-$(lsb_release --codename --short).deb" "groonga-apt-source-latest-$(lsb_release --codename --short).deb"
 
 ```
 Deberías ver un archivo llamado pgroonga.control entre otros archivos de extensión.
@@ -98,20 +88,18 @@ Las instrucciones se pueden encontrar en [esta pagina](https://redis.io/docs/ins
 Agregue el repositorio al índice APT, actualícelo e instale Redis:
 
 ```sh
-sudo apt-get install lsb-release curl gpg
-curl -fsSL https://packages.redis.io/gpg | sudo gpg --dearmor -o /usr/share/keyrings/redis-archive-keyring.gpg
-sudo chmod 644 /usr/share/keyrings/redis-archive-keyring.gpg
-echo "deb [signed-by=/usr/share/keyrings/redis-archive-keyring.gpg] https://packages.redis.io/deb $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/redis.list
-sudo apt-get update
-sudo apt-get install redis
 
-sudo systemctl enable redis-server
-sudo systemctl start redis-server
+curl -fsSL https://packages.redis.io/gpg | sudo gpg --dearmor -o /usr/share/keyrings/redis-archive-keyring.gpg
+
+echo "deb [signed-by=/usr/share/keyrings/redis-archive-keyring.gpg] https://packages.redis.io/deb $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/redis.list
+sudo apt update
+sudo apt install redis
 
 sudo systemctl enable --now redis-server
 
 # check version
 redis-cli --version
+
 ```
 
 ### FFmpeg
