@@ -52,12 +52,12 @@ pnpm --version
 Las instrucciones de instalación de PostgreSQL se pueden encontrar en [esta pagina](https://www.postgresql.org/download/).
 
 ```sh
-sudo sh -c 'echo "deb https://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list'
+sudo sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt/ $(lsb_release -c | awk "{print $2}")-pgdg main" > /etc/apt/sources.list.d/pgdg.list'
+
 wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
+
 sudo apt update
 sudo apt install postgresql-16
-
-sudo systemctl enable --now postgresql
 
 # check version
 psql --version
@@ -68,20 +68,25 @@ Las instrucciones de instalación de PGroonga se pueden encontrar en [esta pagin
 Agregar el repositorio de Groonga: Groonga proporciona un repositorio oficial para instalar la versión más reciente. Puedes agregarlo de la siguiente manera:
 
 ```sh
-sudo apt update
-sudo apt-get install -y software-properties-common
+
+sudo apt install -y software-properties-common
 sudo add-apt-repository ppa:groonga/ppa
-sudo apt-get update
+sudo apt update
+sudo apt install postgresql-16-pgroonga
 
-sudo apt-get install groonga
-sudo apt-get install build-essential libboost-all-dev libprotobuf-dev libprotobuf-c-dev
+psql -U postgres -c "SELECT * FROM pg_extension WHERE extname = 'pgroonga';"
 
-cd pgroonga
-make clean
-make 
-sudo make install
+sudo nano /etc/postgresql/16/main/postgresql.conf
+```
 
+Busca y descomenta la línea shared_preload_libraries (si está comentada) para incluir pgroonga:
 
+'shared_preload_libraries = 'pgroonga'
+
+Después de modificar la configuración, necesitas reiniciar el servicio de PostgreSQL para que los cambios tengan efecto.
+
+```sh
+sudo systemctl restart postgresql
 
 ```
 Deberías ver un archivo llamado pgroonga.control entre otros archivos de extensión.
@@ -181,6 +186,7 @@ sudo apt install ffmpeg
 
 1. Construir
     ```sh
+    pnpm install --no-frozen-lockfile
     pnpm install --frozen-lockfile
     NODE_ENV=production NODE_OPTIONS='--max-old-space-size=3072' pnpm run build
     ```
