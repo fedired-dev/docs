@@ -8,42 +8,84 @@ identifier = "admin/important"
 parent = "admin"
 ---
 
-## 🌟 **Usuarios Especiales en Fedired: relay.actor e instance.actor**
+# 📚 Protocolo ActivityPub y Nostr
 
-En Fedired, cada servidor crea automáticamente dos usuarios especiales: **relay.actor** e **instance.actor**. Estos usuarios desempeñan un papel crucial en el funcionamiento de la plataforma y su correcta operación es esencial para mantener la estabilidad y la integridad del servidor. A continuación, se detalla la naturaleza de estos usuarios, su importancia, y las directrices sobre cómo deben ser manejados.
+Esta guía proporciona información sobre los protocolos **ActivityPub** y **Nostr**, con el fin de ayudar a los administradores y desarrolladores a comprender su funcionamiento y cómo pueden ser utilizados para crear y administrar redes sociales descentralizadas.
 
-## ¿Quiénes son relay.actor e instance.actor?
+## 🌐 **¿Qué es ActivityPub?**
 
-### **relay.actor**
+**ActivityPub** es un protocolo abierto de comunicación basado en estándares web que facilita la creación de redes sociales descentralizadas. Fue desarrollado por el **W3C Social Web Working Group** y es utilizado por varias plataformas para federar servicios y redes sociales.
 
-El usuario **relay.actor** actúa como un intermediario fundamental dentro del ecosistema del **Fediverse**. Su responsabilidad principal es gestionar y facilitar las interacciones entre diferentes instancias de Fedired, lo que incluye la distribución de publicaciones, comentarios y demás actividades de los usuarios. Esta función de relé es vital para asegurar que la información fluya de manera eficiente y correcta entre los diversos servidores, permitiendo una experiencia social cohesiva y dinámica.
+### Características principales de ActivityPub:
+1. **Descentralización**: Permite a los usuarios interactuar entre diferentes plataformas, creando una red social federada en la que no se depende de una sola entidad.
+2. **Interoperabilidad**: A través de ActivityPub, diferentes aplicaciones pueden intercambiar mensajes y contenido en un formato estandarizado.
+3. **Objetos y Actividades**: El protocolo define una serie de "objetos" (como publicaciones, imágenes, y usuarios) y "actividades" (como seguir, publicar o dar 'me gusta') que pueden ser utilizados para interactuar entre plataformas.
 
-### **instance.actor**
+### Componentes de ActivityPub:
+1. **Servidor de Actividad**: Es el servidor que hospeda los datos de una red social y maneja las solicitudes de interacción entre usuarios de diferentes servidores.
+2. **Cliente de Actividad**: Un cliente que se conecta a un servidor para realizar actividades, como enviar publicaciones o seguir otros usuarios.
+3. **Mensajes de Actividad**: Los mensajes (basados en JSON-LD) permiten la interacción entre servidores y clientes. Cada mensaje describe una actividad que un usuario realiza, como crear contenido o seguir a otro usuario.
 
-Por otro lado, **instance.actor** representa a la propia instancia de Fedired. Este usuario es responsable de la gestión interna de todas las operaciones dentro de la instancia, incluyendo la autorización de solicitudes, la asignación de recursos y el monitoreo del rendimiento del servidor. Su presencia es esencial para garantizar que todas las funcionalidades de la plataforma se ejecuten de manera fluida y eficaz, ofreciendo así una experiencia óptima para los usuarios.
+#### Ejemplo de un mensaje ActivityPub:
+```json
+{
+  "@context": "https://www.w3.org/ns/activitystreams",
+  "type": "Create",
+  "actor": "https://example.org/users/johndoe",
+  "object": {
+    "type": "Note",
+    "content": "¡Hola, mundo!"
+  }
+}
+```
 
-> ## <span style="color:red">**Importancia** de No Modificar Estos Usuarios</span>
+## 🛠 **¿Qué es Nostr?**
 
-La correcta gestión de `relay.actor` e `instance.actor` es fundamental. A continuación, se enumeran las razones por las cuales no deben ser modificados:
+**Nostr** es un protocolo simple y descentralizado para la creación de redes sociales. A diferencia de ActivityPub, Nostr no se basa en servidores y federación de instancias, sino en una arquitectura de "clientes y redes" donde cada usuario es responsable de manejar su propio conjunto de claves criptográficas.
 
-1. **Integridad del Sistema**: Cualquier cambio en la configuración, propiedades o permisos de estos usuarios puede comprometer la estabilidad de la plataforma. Estos usuarios están diseñados para interactuar con el sistema y realizar funciones críticas; alterarlos podría provocar fallos en la comunicación entre instancias y en la operación general del servidor.
+### Características principales de Nostr:
+1. **Descentralización extrema**: No hay servidores centralizados. Cada usuario puede operar su propio nodo de red a través de un cliente compatible con Nostr.
+2. **Bajo requerimiento de infraestructura**: A diferencia de otros protocolos como ActivityPub, Nostr es ligero y más fácil de implementar.
+3. **Uso de criptografía**: Cada mensaje es firmado digitalmente con las claves privadas del usuario, lo que garantiza la autenticidad y la integridad del contenido.
 
-2. **Riesgo de Ruptura del Sistema**: Si alguno de estos usuarios llega a sufrir modificaciones, incluso cambios menores, el sistema puede romperse. Esto puede resultar en la incapacidad de enviar o recibir mensajes entre diferentes instancias, así como en la pérdida de datos y la interrupción del servicio para los usuarios. Las repercusiones pueden ser significativas y afectar la experiencia del usuario de manera drástica.
+### Funcionamiento básico:
+- **Claves públicas y privadas**: Los usuarios tienen una clave pública que otros pueden usar para enviarles mensajes, y una clave privada que utilizan para firmar sus actividades.
+- **Redes descentralizadas**: Los clientes de Nostr pueden conectar con otros clientes para formar redes de intercambio de mensajes y publicaciones sin depender de un servidor central.
 
-3. **Gestión Automática**: Ambos usuarios son gestionados automáticamente por el sistema de Fedired. Intentar intervenir manualmente en su configuración no solo es innecesario, sino que también puede interferir con los procesos automatizados que garantizan el funcionamiento eficiente de la plataforma. 
+#### Ejemplo de mensaje en Nostr:
+El protocolo de Nostr se basa en eventos que los clientes envían a través de la red. Un ejemplo de evento podría ser:
+```json
+{
+  "content": "¡Hola, Nostr!",
+  "pubkey": "1234567890abcdef",
+  "sig": "abcdef123456",
+  "event": "post"
+}
+```
 
-4. **Consecuencias en la Experiencia del Usuario**: La modificación o eliminación de estos usuarios podría llevar a una experiencia de usuario deficiente, con problemas de conectividad, tiempos de inactividad y una percepción negativa de la plataforma. La confianza de los usuarios en el sistema puede verse afectada si experimentan interrupciones en su capacidad para interactuar con otros.
+## 📡 **Comparación entre ActivityPub y Nostr**
 
-## Directrices para el Manejo de relay.actor e instance.actor
+| Característica       | **ActivityPub**                             | **Nostr**                                  |
+|----------------------|---------------------------------------------|--------------------------------------------|
+| **Descentralización** | Federada, pero centralizada en instancias.  | Totalmente descentralizado.                |
+| **Requisitos**        | Requiere servidores para federación.       | Solo necesita clientes y claves.           |
+| **Enfoque**           | Redes sociales federadas.                   | Mensajes criptográficos entre clientes.    |
+| **Protocolos**        | ActivityPub (Interoperable).               | Nostr (Basado en criptografía).            |
+| **Escalabilidad**     | Requiere infraestructura compleja.         | Escalable sin servidores.                  |
 
-- **No Modificar**: No realices cambios en la configuración de estos usuarios. Mantener sus parámetros originales es esencial para asegurar su correcto funcionamiento.
+---
 
-- **No Borrar**: La eliminación de `relay.actor` o `instance.actor` no solo es inapropiada, sino que puede causar fallos en el sistema. Su presencia es imprescindible para la operación de la instancia.
+## 🚀 **Conclusión**
 
-- **No Suspender ni Silenciar**: Estos usuarios no deben ser silenciados, suspendidos o moderados de ninguna manera. Cualquier intento de intervención puede resultar en problemas operativos significativos y afectar el rendimiento del servidor.
+Cada uno de estos protocolos tiene sus ventajas dependiendo del caso de uso:
 
-## Conclusión
+- **ActivityPub** es ideal para redes sociales federadas, donde los usuarios pueden interactuar entre diferentes plataformas.
+- **Nostr** es una opción más ligera y simple, ideal para quienes buscan una solución descentralizada sin la complejidad de servidores.
 
-Los usuarios `relay.actor` e `instance.actor` son componentes esenciales de la arquitectura de Fedired. Su funcionamiento adecuado garantiza la comunicación eficiente entre instancias y el correcto desempeño del servidor. Por lo tanto, es crucial que se mantengan intactos, sin modificaciones, para asegurar la estabilidad y funcionalidad de la plataforma.
+Puedes elegir el protocolo que mejor se adapte a tus necesidades dependiendo de lo que quieras lograr en tu red social.
 
-Recuerda que el éxito de tu instancia de Fedired depende en gran medida de la gestión adecuada de estos actores especiales. Cuidar de su integridad es cuidar de la experiencia de todos los usuarios de la red social.
+---
+
+## 📌 **Referencias**
+- [Documentación oficial de ActivityPub](https://www.w3.org/TR/activitypub/)
+- [Documentación de Nostr](https://github.com/fiatjaf/nostr)

@@ -18,7 +18,6 @@ export default defineConfig({
     nav: [
       { text: 'Inicio', link: '/' },
       { text: 'Ayuda a Traducir Fedired', link: 'https://crowdin.com/project/fedired/' },
-      { text: 'Referencia API', link: 'https://fedired.com/api-doc/' },
       { text: 'Fedired Social Oficial', link: 'https://fedired.com' },
     ],
 
@@ -48,8 +47,6 @@ export default defineConfig({
         text: 'Ajustes Recomendados',
         items: [
           { text: 'Rotar Registros', link: '/configuration-fedired/rotate' },
-          { text: 'Configuración de PostgreSQL', link: '/configuration-fedired/database' },
-          { text: 'Personalización', link: '/configuration-fedired/personalization' },
           { text: 'Consejos y Trucos', link: '/configuration-fedired/tips' },
         ]
       },

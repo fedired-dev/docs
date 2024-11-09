@@ -28,24 +28,20 @@ A medida que el servidor se ejecuta durante más tiempo, el tamaño de los archi
      sudo systemctl restart systemd-journald
      ```
 
-2. **Cambiar el Nivel de Registro de PGroonga:**
-   - Se recomienda cambiar el [nivel de registro de PGroonga](https://pgroonga.github.io/reference/parameters/log-level.html). El nivel predeterminado es `notice`, pero es demasiado detallado para el uso diario.
-   - Para controlar el nivel de registro, agregue esta línea a su `postgresql.conf`:
-
-     ```conf
-     pgroonga.log_level = error
-     ```
-
-3. **Ubicación de `postgresql.conf`:**
+2. **Ubicación de `postgresql.conf`:**
    - Puede comprobar la ubicación de `postgresql.conf` con este comando:
 
      ```sh
      sudo --user=postgres psql --command='SHOW config_file'
      ```
 
-4. **Ubicación del Archivo de Registro de PGroonga:**
-   - El archivo de registro de PGroonga (`pgroonga.log`) se encuentra en este directorio:
+3. **Ubicación del Archivo de Registro de PostgreSQL:**
+   - El archivo de registro de PostgreSQL se encuentra en este directorio:
 
      ```sh
      sudo --user=postgres psql --command='SHOW data_directory'
      ```
+
+## Conclusión
+
+Configurar una correcta rotación de registros es esencial para mantener la salud del sistema y evitar problemas relacionados con el almacenamiento y el rendimiento. Al automatizar la eliminación de registros antiguos y asegurarse de que no se acumulan en el disco, puede asegurar que su servidor funcione sin problemas a largo plazo.

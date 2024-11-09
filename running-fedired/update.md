@@ -10,33 +10,30 @@ parent = "admin"
 
 # Instrucciones de actualización
 
-## Para usuarios de systemd/pm2
+## Nvus
 
-1. Cambiar al usuario `fedired` y de ir al directorio Fedired antes de ejecutar el comando `git`:
+Para actualizar Nvus (el backend), entra al servidor y ejecuta los siguientes comandos:
 
 ```sh
-sudo su --login fedired
-cd ~/fedired
+sudo -Hu fedired bash
+cd /opt/fedired
+
+git pull origin main
+
+asdf install
+
+mix deps.get
+MIX_ENV=prod mix ecto.migrate
+
+exit
+systemctl restart fedired
 ```
+## Fedired
 
-2. Extraiga el código fuente más reciente y Construir Fedired
+Para actualizar Fedired (frontend), acceda a su servidor y vuelva a ejecutar los comandos de instalación.
+
 ```sh
-git stash
-git pull --ff origin main
-corepack prepare pnpm@latest --activate
-rm pnpm-lock.yaml
-pnpm install --no-frozen-lockfile
-pnpm install --frozen-lockfile
-NODE_ENV='production' NODE_OPTIONS='--max_old_space_size=3072' pnpm run rebuild
-pnpm run migrate
- ```
+curl -L -o fedired.zip https://github.com/fedired-dev/fedired/archive/refs/heads/fedired.zip
 
-3. Salga del usuario Fedired
-     ```sh
-    exit
-    ```
-		
-4. Reiniciar el servidor
-    ```sh
-    sudo systemctl restart fedired
-    ```
+busybox unzip fedired.zip -o -d /opt/fedired/instance/static
+```
