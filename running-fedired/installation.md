@@ -60,7 +60,7 @@ Es hora de instalar Nvus. Vamos a obtenerlo y ponerlo en funcionamiento.
 Descarga el código fuente de Fedired con Git:
 
 ```sh
-git clone https://github.com/fedired/fedired /opt/fedired
+git clone https://github.com/fedired/nvus /opt/fedired
 chown -R fedired:fedired /opt/fedired
 ```
 Entra en el directorio del código fuente y conviértete en el usuario fedired:
