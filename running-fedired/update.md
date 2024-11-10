@@ -15,8 +15,8 @@ parent = "admin"
 Para actualizar Nvus (el backend), entra al servidor y ejecuta los siguientes comandos:
 
 ```sh
-sudo -Hu fedired bash
-cd /opt/fedired
+sudo -Hu pleroma bash
+cd /opt/pleroma
 
 git pull origin main
 
@@ -33,7 +33,7 @@ systemctl restart fedired
 Para actualizar Fedired (frontend), acceda a su servidor y vuelva a ejecutar los comandos de instalación.
 
 ```sh
-curl -L -o fedired.zip https://github.com/fedired-dev/fedired/archive/refs/heads/fedired.zip
+cd /opt/pleroma/instance/static/fedired
 
-busybox unzip fedired.zip -o -d /opt/fedired/instance/static
+git pull
 ```

@@ -69,7 +69,7 @@ Entra en el directorio del código fuente y conviértete en el usuario fedired:
 cd /opt/pleroma
 sudo -Hu pleroma bash
 ```
-(Asegúrate de estar como el usuario fedired en `/opt/fedired` para el resto de esta sección.)
+(Asegúrate de estar como el usuario fedired en `/opt/pleroma` para el resto de esta sección.)
 
 ### 3.b. Instalar Elixir
 Fedired usa el lenguaje de programación Elixir (basado en Erlang). Es importante usar una versión específica de Erlang (24), así que utilizaremos el gestor de versiones asdf para instalarlo.
@@ -193,15 +193,15 @@ systemctl enable --now nginx.service
 🎉 ¡Felicidades, ya terminaste! Revisa tu sitio en un navegador y debería estar en línea.
 
 ## 5. Instalar Fedired
-Finalmente, es hora de instalar Fedired. Primero, obtén la última versión:
+Finalmente, ve a la ruta de instalacion:
 
 ```sh
-curl -L -o fedired.zip https://github.com/fedired-dev/fedired/archive/refs/heads/fedired.zip
+cd /opt/pleroma/instance/static
 ```
-Luego, descomprímelo.
+Luego, clona el repositorio.
 
 ```sh
-busybox unzip fedired.zip -o -d /opt/pleroma/instance/static
+sudo git clone https://github.com/fedired-dev/fedired.git
 ```
 
 ## 6. Post-instalación
