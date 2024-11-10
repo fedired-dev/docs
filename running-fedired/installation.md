@@ -60,7 +60,7 @@ Es hora de instalar Nvus. Vamos a obtenerlo y ponerlo en funcionamiento.
 Descarga el código fuente de Fedired con Git:
 
 ```sh
-git clone https://github.com/fedired/nvus /opt/pleroma
+git clone https://github.com/fedired-dev/nvus /opt/pleroma
 chown -R pleroma:pleroma /opt/pleroma
 ```
 Entra en el directorio del código fuente y conviértete en el usuario fedired:
