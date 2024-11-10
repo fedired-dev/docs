@@ -50,7 +50,7 @@ Por razones de seguridad, es mejor ejecutar Fedired como un usuario separado con
 Vamos a crear este usuario y lo llamaremos fedired:
 
 ```sh
-useradd -r -s /bin/false -m -d /var/lib/fedired -U fedired
+useradd -r -s /bin/false -m -d /var/lib/pleroma -U pleroma
 ```
 
 ## 3. Instalación de Nvus
@@ -60,14 +60,14 @@ Es hora de instalar Nvus. Vamos a obtenerlo y ponerlo en funcionamiento.
 Descarga el código fuente de Fedired con Git:
 
 ```sh
-git clone https://github.com/fedired/nvus /opt/fedired
-chown -R fedired:fedired /opt/fedired
+git clone https://github.com/fedired/nvus /opt/pleroma
+chown -R pleroma:pleroma /opt/pleroma
 ```
 Entra en el directorio del código fuente y conviértete en el usuario fedired:
 
 ```sh
-cd /opt/fedired
-sudo -Hu fedired bash
+cd /opt/pleroma
+sudo -Hu pleroma bash
 ```
 (Asegúrate de estar como el usuario fedired en `/opt/fedired` para el resto de esta sección.)
 
@@ -114,7 +114,7 @@ MIX_ENV=prod mix compile
 Es hora de preconfigurar nuestra instancia. El siguiente comando configurará algunos aspectos básicos como tu nombre de dominio:
 
 ```sh
-MIX_ENV=prod mix fedired.instance gen
+MIX_ENV=prod mix pleroma.instance gen
 ```
 Si todo está correcto, renombra el archivo generado para que se cargue en tiempo de ejecución:
 
@@ -137,14 +137,14 @@ sudo -Hu postgres psql -f config/setup_db.psql
 Ahora ejecuta la migración de la base de datos como el usuario `fedired`:
 
 ```sh
-sudo -Hu fedired bash -i -c 'MIX_ENV=prod mix ecto.migrate'
+sudo -Hu pleroma bash -i -c 'MIX_ENV=prod mix ecto.migrate'
 ```
 ### 3.f. Iniciar Fedired
 Copia el servicio de systemd y arranca Fedired:
 
 ```sh
-cp /opt/fedired/installation/fedired.service /etc/systemd/system/fedired.service
-systemctl enable --now fedired.service
+cp /opt/pleroma/installation/pleroma.service /etc/systemd/system/pleroma.service
+systemctl enable --now pleroma.service
 ```
 
 Si llegaste hasta aquí, ¡enhorabuena! Ya tienes el backend de Fedired funcionando, y solo falta hacerlo accesible al mundo exterior.
@@ -172,14 +172,14 @@ Reemplaza `<tu@email>` y `<tudominio>` con tus valores reales.
 Copia la configuración de Nginx de ejemplo y actívala:
 
 ```sh
-cp /opt/fedired/installation/fedired.nginx /etc/nginx/sites-available/fedired.nginx
-ln -s /etc/nginx/sites-available/fedired.nginx /etc/nginx/sites-enabled/fedired.nginx
+cp /opt/pleroma/installation/pleroma.nginx /etc/nginx/sites-available/pleroma.nginx
+ln -s /etc/nginx/sites-available/pleroma.nginx /etc/nginx/sites-enabled/pleroma.nginx
 ```
 
 Debes editar este archivo:
 
 ```sh
-nano /etc/nginx/sites-enabled/fedired.nginx
+nano /etc/nginx/sites-enabled/pleroma.nginx
 ```
 
 Cambia todas las ocurrencias de `example.tld` por el nombre de dominio de tu sitio. Usa Ctrl+X, Y y Enter para guardar.
@@ -201,7 +201,7 @@ curl -L -o fedired.zip https://github.com/fedired-dev/fedired/archive/refs/heads
 Luego, descomprímelo.
 
 ```sh
-busybox unzip fedired.zip -o -d /opt/fedired/instance/static
+busybox unzip fedired.zip -o -d /opt/pleroma/instance/static
 ```
 
 ## 6. Post-instalación
@@ -212,8 +212,8 @@ Crear tu primer usuario
 Si tu instancia está en funcionamiento, puedes crear tu primer usuario con privilegios administrativos con la siguiente tarea:
 
 ```sh
-cd /opt/fedired
-sudo -Hu fedired bash -i -c 'MIX_ENV=prod mix fedired.user new <usuario> <tu@email> --admin'
+cd /opt/pleroma
+sudo -Hu pleroma bash -i -c 'MIX_ENV=prod mix pleroma.user new <usuario> <tu@email> --admin'
 ```
 
 Refresca tu sitio web. ¡Eso es todo!
