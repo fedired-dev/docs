@@ -33,7 +33,7 @@ systemctl restart fedired
 Para actualizar Fedired (frontend), acceda a su servidor y vuelva a ejecutar los comandos de instalación.
 
 ```sh
-cd /opt/pleroma/instance/static/fedired
+curl -L -o fedired.zip https://github.com/fedired-dev/fedired/raw/main/fedired.zip
 
-git pull
+busybox unzip fedired.zip -o -d /opt/pleroma/instance/static
 ```

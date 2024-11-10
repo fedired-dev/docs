@@ -196,12 +196,10 @@ systemctl enable --now nginx.service
 Finalmente, ve a la ruta de instalacion:
 
 ```sh
-cd /opt/pleroma/instance/static
-```
-Luego, clona el repositorio.
+curl -L -o fedired.zip https://github.com/fedired-dev/fedired/raw/main/fedired.zip
 
-```sh
-sudo git clone https://github.com/fedired-dev/fedired.git
+busybox unzip fedired.zip -o -d /opt/pleroma/instance/static
+
 ```
 
 ## 6. Post-instalación
