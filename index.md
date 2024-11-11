@@ -15,6 +15,12 @@ hero:
   
 
 features:
+- icon: ✨
+  title: Ordo
+  details: >-
+    🌎 Fedired: Open-source, decentralized social media platform – Free forever! 🚀
+  link: /ordo/ordo.md
+
 - icon: 🌐
   title: Fedired
   details: >-
