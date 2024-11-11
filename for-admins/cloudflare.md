@@ -44,7 +44,7 @@ sudo chmod 600 /etc/letsencrypt/cloudflare.ini
 Usa el siguiente comando para generar el certificado SSL:
 
 ```bash
-sudo certbot --dns-cloudflare --dns-cloudflare-credentials /etc/letsencrypt/cloudflare.ini -d tu_dominio.com -d www.tu_dominio.com
+sudo certbot certonly --dns-cloudflare --dns-cloudflare-credentials /etc/letsencrypt/cloudflare.ini -d tu-dominio -d www.tu-dominio --dns-cloudflare-propagation-seconds 60
 ```
 
 Este comando utilizará el plugin de Cloudflare para la validación del dominio y generar los certificados.
