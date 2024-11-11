@@ -54,6 +54,7 @@ export default defineConfig({
         text: 'Administradores',
         items: [
           { text: 'IMPORTANTE', link: '/for-admins/important' },
+          { text: 'Ajuste de Cloudflare', link: '/for-admins/cloudflare' },
         ]
       },
     ],
