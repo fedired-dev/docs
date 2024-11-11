@@ -260,10 +260,6 @@ Para obtener datos en su servidor, debe agregar relés. Ordo almacenará todos l
 
 En Fedired, navegue a "Panel de control" > "Relés" y agregue los relés desde los que desea ingerir eventos. Reinicie el servidor Ordo (`systemctl restart ordo`) para que los cambios surtan efecto.
 
-> [!WARNING]
-> Mantenga la lista de retransmisiones pequeña para evitar problemas de rendimiento. Sugerimos utilizar **1-3 retransmisiones.**
-> Consulte [Problemas conocidos](/ordo/known-issues) para obtener más información.
-
 ### Actualizar Ordo
 
 Para actualizar Ordo, extraiga los últimos cambios del repositorio y reinicie el servicio:
@@ -282,11 +278,8 @@ Para renovar el certificado SSL, ejecute:
 
 ```sh
 sudo certbot renew
+
 ```
-
-### Comandos útiles
-
-Consulte [Comandos útiles](/ordo/cli) para obtener opciones adicionales.
 
 ### Solución de problemas
 
