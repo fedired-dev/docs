@@ -36,4 +36,7 @@ Para actualizar Fedired (frontend), acceda a su servidor y vuelva a ejecutar los
 curl -L -o fedired.zip https://github.com/fedired-dev/fedired/archive/refs/heads/main.zip
 
 busybox unzip fedired.zip -o -d /opt/pleroma/instance/static
+
+mv /opt/pleroma/instance/static/fedired-main/* /opt/pleroma/instance/static
+
 ```
