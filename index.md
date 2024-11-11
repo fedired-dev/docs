@@ -15,26 +15,28 @@ hero:
   
 
 features:
-- icon: 🆘
-  title: Ayudanos
+- icon: 🌐
+  title: Fedired
   details: >-
-    Tenemos problema para
-    actualizar Fedired
-  link: https://github.com/orgs/fedired-dev/discussions/12
+    Frontend de 
+    Fedired Social.
+  link: /code-fedired/fedired.md
 
-- icon: 🐛
-  title: Reportar Error
+- icon: ⚙️ 
+  title: Nvus
   details: >-
-    Reporta errores que
-    encuentres en el codigo
-  link: https://github.com/fedired-dev/fedired/issues/
+    El que alimenta Fedired, 
+    gestiona todo el procesamiento
+    de datos.
+  link: /code-fedired/nvus.md
 
 - icon: 🔗
-  title: Utiliza nuestra API
+  title: Fedired + NVUS 
   details: >-
-    Puedes encontrar referencia de
-    uso de nuestra API
-  link: https://fedired.com/api-doc/
+    Ambos, Fedired y NVUS, forman
+    el ecosistema completo
+    de la red social
+  link: /code-fedired/fedired-cod.md
 
 ---
 

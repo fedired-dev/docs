@@ -168,6 +168,11 @@ certbot certonly --email <tu@email> -d <tudominio> --standalone
 ```
 Reemplaza `<tu@email>` y `<tudominio>` con tus valores reales.
 
+### IMPORTANTE
+Para VM o usarios de ver ajustes aqui [Cloudflare](/for-admins/cloudflare.md) 
+
+
+
 ### 4.b. Nginx
 Copia la configuración de Nginx de ejemplo y actívala:
 
