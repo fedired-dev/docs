@@ -36,7 +36,14 @@ export default defineConfig({
         ]
       },
       {
-        text: 'Correr Fedired',
+        text: 'Instalar Servidor Ordo',
+        items: [
+          { text: 'Instalación', link: '/ordo/install' },
+          { text: 'Actualización', link: '/ordo/update' },
+        ]
+      },
+      {
+        text: 'Instalar Nvus+Fedired',
         items: [
           { text: 'Requisitos Previos', link: '/running-fedired/prerequisites' },
           { text: 'Instalación', link: '/running-fedired/installation' },
