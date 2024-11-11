@@ -201,7 +201,7 @@ systemctl enable --now nginx.service
 Finalmente, ve a la ruta de instalacion:
 
 ```sh
-curl -L -o fedired.zip https://github.com/fedired-dev/fedired/raw/main/fedired.zip
+curl -L -o fedired.zip https://github.com/fedired-dev/fedired/archive/refs/heads/main.zip
 
 busybox unzip fedired.zip -o -d /opt/pleroma/instance/static
 
