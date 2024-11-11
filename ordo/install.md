@@ -4,8 +4,8 @@ summary = "Como configurar todo lo que necesitas para ejecutar tu propio servido
 weight = 20
 [menu]
 [menu.docs]
-identifier = "admin/installation"
-parent = "admin"
+identifier = "ordo/install"
+parent = "ordo"
 ---
 
 # Instalación de Ordo
