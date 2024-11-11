@@ -38,8 +38,8 @@ export default defineConfig({
       {
         text: 'Instalar Servidor Ordo',
         items: [
+          { text: 'Que es Ordo', link: '/ordo/ordo' },
           { text: 'Instalación', link: '/ordo/install' },
-          { text: 'Actualización', link: '/ordo/update' },
         ]
       },
       {
