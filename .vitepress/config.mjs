@@ -17,6 +17,7 @@ export default defineConfig({
     // https://vitepress.dev/reference/default-theme-config
     nav: [
       { text: 'Inicio', link: '/' },
+      { text: 'Ordo', link: '/ordo/ordo' },
       { text: 'Ayuda a Traducir Fedired', link: 'https://crowdin.com/project/fedired/' },
       { text: 'Fedired Social Oficial', link: 'https://fedired.com' },
     ],
