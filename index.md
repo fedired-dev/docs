@@ -15,34 +15,18 @@ hero:
   
 
 features:
-- icon: ✨
+- icon: 🌱
   title: Ordo
   details: >-
-    🌎 Fedired: Open-source, decentralized social media platform – Free forever! 🚀
+    🔒 Servidor Backend: Ordo es un servidor backend para crear redes sociales descentralizadas basado en pleroma!
   link: /ordo/ordo.md
 
-- icon: 🌐
+- icon: ✨
   title: Fedired
   details: >-
-    Frontend de 
-    Fedired Social.
+    🌎 Fedired: Open-source, decentralized social media platform – Free forever! 🚀
   link: /code-fedired/fedired.md
 
-- icon: ⚙️ 
-  title: Nvus
-  details: >-
-    El que alimenta Fedired, 
-    gestiona todo el procesamiento
-    de datos.
-  link: /code-fedired/nvus.md
-
-- icon: 🔗
-  title: Fedired + NVUS 
-  details: >-
-    Ambos, Fedired y NVUS, forman
-    el ecosistema completo
-    de la red social
-  link: /code-fedired/fedired-cod.md
 
 ---
 
