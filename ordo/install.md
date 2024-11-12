@@ -18,6 +18,11 @@ y [nginx](https://nginx.org/en/).
 
 ### 1.a. Instalar actualizaciones
 
+> [!WARNING]
+>
+> Si encuentras algún error durante el proceso de instalación, por favor abre un [Reportar Issues](https://github.com/fedired-dev/docs/issues). Asegúrate de proporcionar detalles sobre el problema, incluyendo el sistema operativo, los pasos seguidos y cualquier mensaje de error recibido. Esto nos ayudará a solucionar el problema más rápidamente.
+.
+
 Normalmente, un VPS nuevo ya tiene software desactualizado, por lo que debe ejecutar los siguientes comandos para actualizarlo:
 
 ::: code-group
@@ -59,10 +64,6 @@ Para instalar Deno en todo el sistema, ejecute:
 ```sh
 curl -fsSL https://deno.land/x/install/install.sh | sudo DENO_INSTALL=/usr/local sh -s v2.0.0
 ```
-
-> [!TIP]
->
-> Para una mejor compatibilidad, utilice la versión de Deno que recomendamos, que se puede encontrar en las notas de la versión o en el archivo [.tool-versions](https://github.com/fedired-dev/ordo/-/blob/main/.tool-versions).
 
 ### 1.d. Cree el usuario Ordo
 
