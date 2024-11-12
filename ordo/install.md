@@ -53,14 +53,14 @@ Vamos a crear este usuario y lo llamaremos fedired:
 useradd -r -s /bin/false -m -d /var/lib/pleroma -U pleroma
 ```
 
-## 3. Instalación de Nvus
-Es hora de instalar Nvus. Vamos a obtenerlo y ponerlo en funcionamiento.
+## 3. Instalación de Ordo
+Es hora de instalar Ordo. Vamos a obtenerlo y ponerlo en funcionamiento.
 
 3.a. Descargar el código fuente
 Descarga el código fuente de Fedired con Git:
 
 ```sh
-git clone https://github.com/fedired-dev/nvus /opt/pleroma
+git clone https://github.com/fedired-dev/ordo /opt/pleroma
 chown -R pleroma:pleroma /opt/pleroma
 ```
 Entra en el directorio del código fuente y conviértete en el usuario fedired:
@@ -103,7 +103,7 @@ Obtén las dependencias de Elixir:
 ```sh
 mix deps.get
 ```
-Finalmente, compila Nvus:
+Finalmente, compila Ordo:
 
 ```sh
 MIX_ENV=prod mix compile
@@ -232,7 +232,7 @@ Refresca tu sitio web. ¡Eso es todo!
 
 ## Instrucciones de actualización
 
-Para actualizar Nvus (el backend), entra al servidor y ejecuta los siguientes comandos:
+Para actualizar Ordo (el backend), entra al servidor y ejecuta los siguientes comandos:
 
 ```sh
 sudo -Hu pleroma bash
