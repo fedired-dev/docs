@@ -5,7 +5,7 @@ export default defineConfig({
   lang: 'es-MX',
   title: "Documentación de Fedired",
   base: "/",
-  description: "La documentación oficial de Fedired",
+  description: "Documentación oficial de Fedired",
   themeConfig: {
     logo: {
       light: '/logo-black.png',
@@ -17,6 +17,7 @@ export default defineConfig({
     // https://vitepress.dev/reference/default-theme-config
     nav: [
       { text: 'Inicio', link: '/' },
+      { text: 'Que es Fedired Dev', link: '/project/instroduction'}
       { text: 'Ordo', link: '/ordo/ordo' },
       { text: 'Ayuda a Traducir Fedired', link: 'https://crowdin.com/project/fedired/' },
       { text: 'Fedired Social Oficial', link: 'https://fedired.com' },
@@ -32,37 +33,21 @@ export default defineConfig({
       {
         text: '',
         items: [
-          { text: 'Introducción', link: '/project/introduction' },
-          { text: 'Control de Versiones', link: '/project/versions' },
-        ]
-      },
-      {
-        text: 'Instalar Servidor Ordo',
-        items: [
-          { text: 'Que es Ordo', link: '/ordo/ordo' },
+          { text: 'Que es Ordo?', link: '/ordo/ordo' },
           { text: 'Instalación', link: '/ordo/install' },
         ]
       },
       {
-        text: 'Instalar Nvus+Fedired',
+        text: 'Fedired',
         items: [
-          { text: 'Requisitos Previos', link: '/running-fedired/prerequisites' },
-          { text: 'Instalación', link: '/running-fedired/installation' },
-          { text: 'Actualización', link: '/running-fedired/update' },
-        ]
-      },
-            {
-        text: 'Ajustes Recomendados',
-        items: [
-          { text: 'Rotar Registros', link: '/configuration-fedired/rotate' },
-          { text: 'Consejos y Trucos', link: '/configuration-fedired/tips' },
+          { text: 'Instalalción', link: '/ordo/ordo' },
         ]
       },
       {
         text: 'Administradores',
         items: [
           { text: 'IMPORTANTE', link: '/for-admins/important' },
-          { text: 'Ajuste de Cloudflare', link: '/for-admins/cloudflare' },
+          { text: 'Cloudflare Proxy', link: '/for-admins/cloudflare' },
         ]
       },
     ],

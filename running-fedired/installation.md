@@ -8,225 +8,301 @@ identifier = "admin/installation"
 parent = "admin"
 ---
 
-# Instalación de Fedired
+# Instalar en sistemas que no sean Linux
 
-Te recomendamos instalar Fedired en un VPS dedicado (servidor privado virtual) con Ubuntu 22.04 LTS. Asegúrate de que tu VPS esté funcionando correctamente antes de seguir esta guía.
+No probamos Fedired en sistemas que no sean Linux, por lo que te recomendamos que instales Fedired en un entorno de este tipo **solo si puedes solucionar los problemas tú mismo**. No hay ningún tipo de soporte. Dicho esto, es posible instalar Fedired en algunos sistemas que no sean Linux.
 
-También necesitas tener un nombre de dominio adquirido. Crea un registro A en tu registrador apuntando a la dirección IP de tu VPS.
 
-## 1. Conexión al VPS
+> ⚠️ **Advertencia** Posible <a href="https://github.com/fedired-dev/fedired-docker/blob/main/docs/container.md" target="_blank">configuración en Docker</a> esta forma de instalacion aun esta en Beta y puede no funcionar como se espera.
 
-Una vez que tu VPS esté en funcionamiento, deberás abrir un **programa de terminal** en tu computadora. Esto te permitirá conectarte remotamente al servidor para ejecutar comandos e instalar Fedired.
 
-Los usuarios de Linux y Mac ya tienen un terminal instalado (se llama **"Terminal"**), pero los usuarios de Windows tal vez necesiten instalar [Cygwin](https://www.cygwin.com/) primero.
 
-Una vez abierto el terminal, conéctate a tu servidor usando el nombre de usuario y la dirección IP proporcionada por tu proveedor de VPS. Es posible que te pida una contraseña.
+## 1. Instalar dependencias en Linux (Ubuntu Server)
 
-```sh
-ssh root@123.456.789
-```
-## 2. Preparación del sistema
-Antes de instalar Fedired, necesitamos preparar el sistema.
+Asegúrese de que puede utilizar el comando `sudo` antes de continuar.
 
-### 2.a. Instalar actualizaciones
-Por lo general, un VPS recién creado ya tendrá software desactualizado, por lo que debes ejecutar los siguientes comandos para actualizarlo:
+### Utilidades
 
 ```sh
-apt update
-apt upgrade
+sudo apt update
+sudo apt install build-essential python3 curl wget git lsb-release
 ```
-Cuando se te pregunte ([Y/n]), escribe Y y presiona Enter.
 
-### 2.b. Instalar dependencias del sistema
-Fedired requiere algunas dependencias del sistema para funcionar. Instálalas con el siguiente comando:
+### Node.js y pnpm
+
+Las instrucciones se pueden encontrar en [Este repositorio](https://github.com/nodesource/distributions).
 
 ```sh
-apt install git curl build-essential postgresql postgresql-contrib cmake libmagic-dev imagemagick ffmpeg libimage-exiftool-perl nginx certbot unzip libssl-dev automake autoconf libncurses5-dev fasttext
+NODE_MAJOR=20
+curl -fsSL "https://deb.nodesource.com/setup_${NODE_MAJOR}.x" | sudo -E bash -
+sudo apt install nodejs
+
+# check version
+node --version
 ```
 
-### 2.c. Crear el usuario de Fedired
-Por razones de seguridad, es mejor ejecutar Fedired como un usuario separado con acceso limitado.
+También es necesario habilitar `pnpm`.
+```sh
+sudo corepack enable
+corepack prepare pnpm@latest --activate
 
-Vamos a crear este usuario y lo llamaremos fedired:
+# check version
+pnpm --version
+```
+
+### PostgreSQL y PGroonga
+
+Las instrucciones de instalación de PostgreSQL se pueden encontrar en [esta pagina](https://www.postgresql.org/download/).
 
 ```sh
-useradd -r -s /bin/false -m -d /var/lib/pleroma -U pleroma
+sudo sh -c 'echo "deb https://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list'
+wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
+sudo apt update
+sudo apt install postgresql-16
+
+sudo systemctl enable --now postgresql
+
+# check version
+psql --version
 ```
 
-## 3. Instalación de Nvus
-Es hora de instalar Nvus. Vamos a obtenerlo y ponerlo en funcionamiento.
-
-3.a. Descargar el código fuente
-Descarga el código fuente de Fedired con Git:
+Las instrucciones de instalación de PGroonga se pueden encontrar en [esta pagina](https://pgroonga.github.io/install/).
 
 ```sh
-git clone https://github.com/fedired-dev/nvus /opt/pleroma
-chown -R pleroma:pleroma /opt/pleroma
+sudo apt update
+sudo apt install -y build-essential postgresql-server-dev-16 libgroonga-dev
+git clone --recursive https://github.com/pgroonga/pgroonga.git
+cd pgroonga
+make
+sudo make install
+ls /usr/share/postgresql/16/extension/
+
 ```
-Entra en el directorio del código fuente y conviértete en el usuario fedired:
+Deberías ver un archivo llamado pgroonga.control entre otros archivos de extensión.
+
+### Redis
+
+Las instrucciones se pueden encontrar en [esta pagina](https://redis.io/docs/install/install-redis/).
 
 ```sh
-cd /opt/pleroma
-sudo -Hu pleroma bash
+curl -fsSL https://packages.redis.io/gpg | sudo gpg --dearmor -o /usr/share/keyrings/redis-archive-keyring.gpg
+echo "deb [signed-by=/usr/share/keyrings/redis-archive-keyring.gpg] https://packages.redis.io/deb $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/redis.list
+sudo apt update
+sudo apt install redis
+
+sudo systemctl enable --now redis-server
+
+# check version
+redis-cli --version
 ```
-(Asegúrate de estar como el usuario fedired en `/opt/pleroma` para el resto de esta sección.)
 
-### 3.b. Instalar Elixir
-Fedired usa el lenguaje de programación Elixir (basado en Erlang). Es importante usar una versión específica de Erlang (24), así que utilizaremos el gestor de versiones asdf para instalarlo.
-
-Instala asdf
- ```sh
-git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.10.0
-echo ". $HOME/.asdf/asdf.sh" >> ~/.bashrc
-echo ". $HOME/.asdf/completions/asdf.bash" >> ~/.bashrc
-exec bash
-asdf plugin-add erlang
-asdf plugin-add elixir
- ```
-Finalmente, instala Erlang/Elixir:
+### FFmpeg
 
 ```sh
-asdf install
+sudo apt install ffmpeg
 ```
-(Esto tomará unos 15 minutos. ☕)
 
-### 3.c. Compilar Fedired
-Instala las herramientas básicas de Elixir para la compilación:
+## 2. Configurar una base de datos
+
+1. Crear un usuario de base de datos
+    ```sh
+    sudo -u postgres createuser --no-createdb --no-createrole --no-superuser --encrypted --pwprompt fedired
+    ```
+    Si olvidó la contraseña que ingresó, puede restablecerla ejecutando `sudo -u postgres psql -c "ALTER USER fedired PASSWORD 'password';"`.
+2. Crear una base de datos
+    ```sh
+    sudo -u postgres createdb --encoding='UTF8' --owner=fedired fedired_db
+    ```
+3. Habilitar la extensión PGronnga
+    ```sh
+    sudo -u postgres psql --command='CREATE EXTENSION pgroonga;' --dbname=fedired_db
+    ```
+
+## 3. Configurar Fedired
+
+1. Crear un usuario para Fedired y cambiar de usuario
+   ```sh
+   sudo useradd --create-home --user-group --shell /bin/bash fedired
+   sudo passwd fedired
+   sudo su --login fedired
+   
+   # check the current working directory
+   # the result should be /home/fedired
+   pwd
+   ```
+1. Instalar la cadena de herramientas de Rust
+
+    Instructions can be found at [this page](https://www.rust-lang.org/tools/install).
+    
+    ```sh
+    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+    . "${HOME}/.cargo/env"
+    
+    # check version
+    cargo --version
+    ```
+3. Clonar el repositorio Fedired
+    ```sh
+    git clone --branch=main https://github.com/fedired-dev/fedired.git
+    ```
+1. Copiar y editar el archivo de configuración
+    ```sh
+    cd fedired
+    cp .config/example.yml .config/default.yml
+    nano .config/default.yml
+    ```
+
+    ```yaml
+    url: https://your-server-domain.example.com  # change here
+    port: 3000
+    
+    db:
+      host: localhost
+      port: 5432
+      db: fedired_db
+      user: fedired
+      pass: your-database-password  # and here
+    ```
+
+## 4. Construir Fedired
+
+1. Construir
+    ```sh
+    pnpm install --no-frozen-lockfile
+    pnpm install --frozen-lockfile
+    NODE_ENV=production NODE_OPTIONS='--max-old-space-size=3072' pnpm run build
+    ```
+1. Ejecutar migraciones de bases de datos
+    ```sh
+    pnpm run migrate
+    ```
+1. Cerrar sesión del usuario `federed`
+    ```sh
+    exit
+    ```
+
+## 5. Preparación para publicar un servidor
+
+### 1. Configurar un firewall
+
+Para exponer su servidor de forma segura, puede configurar un firewall. En esta instrucción, utilizamos [ufw](https://launchpad.net/ufw).
 
 ```sh
-mix local.hex --force
-mix local.rebar --force
+sudo apt install ufw
+# if you use SSH
+# SSH_PORT=22
+# sudo ufw limit "${SSH_PORT}/tcp"
+sudo ufw default deny
+sudo ufw allow 80
+sudo ufw allow 443
+sudo ufw --force enable
+
+# check status
+sudo ufw status
 ```
 
-Obtén las dependencias de Elixir:
+### 2. Configurar un proxy inverso
 
-```sh
-mix deps.get
-```
-Finalmente, compila Nvus:
+En esta instrucción, usamos [Caddy](https://caddyserver.com/) para que el servidor Fedired sea accesible desde Internet. Sin embargo, también puedes usar [Nginx](https://nginx.org/en/) si lo deseas ([archivo de configuración de Nginx de ejemplo](./fedired.nginx.conf)).
 
-```sh
-MIX_ENV=prod mix compile
-```
-(Esto tomará unos 10 minutos. ☕)
+1. Instalar Caddy
+    ```sh
+    sudo apt install debian-keyring debian-archive-keyring apt-transport-https
+    curl -1sLf 'https://dl.cloudsmith.io/public/caddy/stable/gpg.key' | sudo gpg --dearmor -o /usr/share/keyrings/caddy-stable-archive-keyring.gpg
+    curl -1sLf 'https://dl.cloudsmith.io/public/caddy/stable/debian.deb.txt' | sudo tee /etc/apt/sources.list.d/caddy-stable.list
+    sudo apt update
+    sudo apt install caddy
 
-### 3.d. Generar la configuración
-Es hora de preconfigurar nuestra instancia. El siguiente comando configurará algunos aspectos básicos como tu nombre de dominio:
+    # check version
+    caddy version
+    ```
+1. Reemplazar el archivo de configuración
+    ```sh
+    sudo mv /etc/caddy/Caddyfile /etc/caddy/Caddyfile.bak
+    sudo nano /etc/caddy/Caddyfile
+    ```
 
-```sh
-MIX_ENV=prod mix pleroma.instance gen
-```
-Si todo está correcto, renombra el archivo generado para que se cargue en tiempo de ejecución:
+    ```Caddyfile
+    your-server-domain.example.com {
+    	reverse_proxy http://127.0.0.1:3000
+    
+    	log {
+    		output file /var/log/caddy/fedired.log
+    	}
+    }
+    ```
+1. Reiniciar Caddy
+    ```sh
+    sudo systemctl restart caddy
+    ```
 
-```sh
-mv config/generated_config.exs config/prod.secret.exs
-```
-3.e. Provisionar la base de datos
-La sección anterior también creó un archivo llamado `config/setup_db.psql`, que puedes usar para crear la base de datos.
+## 6. Publica tu servidor Fedired
 
-Vuelve al usuario root para el resto de este documento:
+1. Crear un archivo de servicio
+    ```sh
+    sudo nano /etc/systemd/system/fedired.service
+    ```
 
-```sh
-exit
-```
-Ejecuta el archivo SQL como el usuario de Postgres:
+    ```service
+    [Unit]
+    Description=Fedired daemon
+    Requires=redis.service caddy.service postgresql.service
+    After=redis.service caddy.service postgresql.service network-online.target
 
-```sh
-sudo -Hu postgres psql -f config/setup_db.psql
-```
-Ahora ejecuta la migración de la base de datos como el usuario `fedired`:
+    [Service]
+    Type=simple
+    User=fedired
+    Group=fedired
+    UMask=0027
+    ExecStart=/usr/bin/pnpm run start
+    WorkingDirectory=/home/fedired/fedired
+    Environment="NODE_ENV=production"
+    Environment="npm_config_cache=/tmp"
+    Environment="NODE_OPTIONS=--max-old-space-size=3072"
+    # uncomment the following line if you use jemalloc (note that the path varies on different environments)
+    # Environment="LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libjemalloc.so.2"
+    StandardOutput=journal
+    StandardError=journal
+    SyslogIdentifier=fedired
+    TimeoutSec=60
+    Restart=always
 
-```sh
-sudo -Hu pleroma bash -i -c 'MIX_ENV=prod mix ecto.migrate'
-```
-### 3.f. Iniciar Fedired
-Copia el servicio de systemd y arranca Fedired:
+    CapabilityBoundingSet=
+    DevicePolicy=closed
+    NoNewPrivileges=true
+    LockPersonality=true
+    PrivateDevices=true
+    PrivateIPC=true
+    PrivateMounts=true
+    PrivateUsers=true
+    ProtectClock=true
+    ProtectControlGroups=true
+    ProtectHostname=true
+    ProtectKernelTunables=true
+    ProtectKernelModules=true
+    ProtectKernelLogs=true
+    ProtectProc=invisible
+    RestrictNamespaces=true
+    RestrictRealtime=true
+    RestrictSUIDSGID=true
+    SecureBits=noroot-locked
+    SystemCallArchitectures=native
+    SystemCallFilter=~@chown @clock @cpu-emulation @debug @ipc @keyring @memlock @module @mount @obsolete @privileged @raw-io @reboot @resources @setuid @swap
+    SystemCallFilter=capset pipe pipe2 setpriority
 
-```sh
-cp /opt/pleroma/installation/pleroma.service /etc/systemd/system/pleroma.service
-systemctl enable --now pleroma.service
-```
-
-Si llegaste hasta aquí, ¡enhorabuena! Ya tienes el backend de Fedired funcionando, y solo falta hacerlo accesible al mundo exterior.
-
-## 4. Configuración en línea
-El último paso es hacer que tu servidor sea accesible desde el exterior. Para ello, vamos a instalar Nginx y habilitar el soporte de HTTPS.
-
-### 4.a. HTTPS
-Usaremos Certbot para obtener un certificado SSL.
-
-Primero, apaga Nginx:
-
-```sh
-systemctl stop nginx
-```
-Ahora puedes obtener el certificado:
-
-```sh
-mkdir -p /var/lib/letsencrypt/
-certbot certonly --email <tu@email> -d <tudominio> --standalone
-```
-Reemplaza `<tu@email>` y `<tudominio>` con tus valores reales.
-
-### IMPORTANTE
-Para VM o usarios de ver ajustes aqui [Cloudflare](/for-admins/cloudflare.md) 
-
-
-
-### 4.b. Nginx
-Copia la configuración de Nginx de ejemplo y actívala:
-
-```sh
-cp /opt/pleroma/installation/pleroma.nginx /etc/nginx/sites-available/pleroma.nginx
-ln -s /etc/nginx/sites-available/pleroma.nginx /etc/nginx/sites-enabled/pleroma.nginx
-```
-
-Debes editar este archivo:
-
-```sh
-nano /etc/nginx/sites-enabled/pleroma.nginx
-```
-
-Cambia todas las ocurrencias de `example.tld` por el nombre de dominio de tu sitio. Usa Ctrl+X, Y y Enter para guardar.
-
-Finalmente, habilita y arranca Nginx:
-
-```sh
-systemctl enable --now nginx.service
-```
-
-🎉 ¡Felicidades, ya terminaste! Revisa tu sitio en un navegador y debería estar en línea.
-
-## 5. Instalar Fedired
-Finalmente, ve a la ruta de instalacion:
-
-```sh
-curl -L -o fedired.zip https://github.com/fedired-dev/fedired/archive/refs/heads/main.zip
-
-busybox unzip fedired.zip -o -d /opt/pleroma/instance/static
-
-mv /opt/pleroma/instance/static/fedired-main/* /opt/pleroma/instance/static
-
-```
-
-## 6. Post-instalación
-A continuación, algunos pasos adicionales que puedes seguir después de finalizar la instalación.
-
-Crear tu primer usuario
-
-Si tu instancia está en funcionamiento, puedes crear tu primer usuario con privilegios administrativos con la siguiente tarea:
-
-```sh
-cd /opt/pleroma
-sudo -Hu pleroma bash -i -c 'MIX_ENV=prod mix pleroma.user new <usuario> <tu@email> --admin'
-```
-
-Refresca tu sitio web. ¡Eso es todo!
+    [Install]
+    WantedBy=multi-user.target
+    ```
+2. Iniciar Fedired
+    ```sh
+    sudo systemctl enable --now fedired
+    ```
 
 # 🎉 ¡Felicidades! 🎉
 
 ¡Disfruta de tu nuevo servidor de Fedired! 🎈
 
+Tu experiencia de hosting está ahora optimizada para ofrecerte un rendimiento excepcional. Aprovecha todas las características que hemos preparado para ti y no dudes en contactarnos si necesitas asistencia.
 
 ¡Bienvenido a la comunidad de Fedired! 🚀
 
