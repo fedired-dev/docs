@@ -10,8 +10,8 @@ hero:
   image: /logo.png
   actions:
   - theme: brand
-    text: Instalación 
-    link: /running-fedired/installation.md
+    text: Instalación de Ordo
+    link: /ordo/install.md
   
 
 features:
