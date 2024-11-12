@@ -162,6 +162,9 @@ Habilite el servicio Ordo para que se inicie automáticamente al iniciar e iníc
 
 ```sh
 sudo systemctl enable --now ordo
+
+/usr/local/bin/deno task start
+
 ```
 
 Ahora Ordo se está ejecutando. ¡Ya casi terminas!
