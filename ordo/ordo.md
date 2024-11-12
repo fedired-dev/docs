@@ -1,33 +1,35 @@
-# Ordo: Red Social de Nueva Generación con Privacidad y Descentralización
+# Ordo: Plataforma Backend de Red Social Descentralizada y Privada
 
-**Ordo** es una plataforma de red social innovadora que busca redefinir la interacción digital en línea, basada en los principios de **descentralización**, **privacidad** y **autonomía del usuario**. A través del uso de tecnologías de vanguardia como **ActivityPub** y **Nostr**, Ordo permite a los usuarios conectarse, compartir y colaborar sin la necesidad de depender de servidores centralizados, lo que garantiza un mayor control sobre los datos personales y la libertad de expresión.
+**Ordo** es un servidor backend basado en **Pleroma**, diseñado para crear una red social descentralizada, que garantiza la **privacidad**, la **autonomía del usuario** y la **descentralización**. Utilizando el protocolo **ActivityPub**, Ordo permite a los usuarios conectarse y compartir contenido sin depender de servidores centralizados, promoviendo una experiencia de red social más libre y privada.
 
-## Tecnologías de vanguardia
+## Arquitectura y Compatibilidad
+
+### Basado en Pleroma
+
+Ordo se apoya en **Pleroma**, un servidor backend modular y ligero que permite crear plataformas federadas y descentralizadas. Pleroma es conocido por su rendimiento eficiente y su flexibilidad, lo que lo convierte en la base ideal para Ordo. Esto asegura que Ordo sea completamente **compatible con otros sistemas que utilicen el protocolo ActivityPub**, garantizando una interoperabilidad total con otras redes federadas como Mastodon, PeerTube, y más.
+
+### Opciones de Frontend Compatibles con Pleroma
+
+Aunque Ordo es un servidor backend, ofrece soporte completo para diferentes **frontends** que permiten a los usuarios personalizar su experiencia de uso según sus preferencias. Algunos de los frontends más populares que son totalmente compatibles con Ordo incluyen:
+
+- **Soapbox**: Un frontend minimalista y elegante, diseñado para ofrecer una experiencia de usuario fluida y sencilla, ideal para quienes buscan simplicidad.
+- **Pleroma Frontend (Pleroma-FE)**: El frontend oficial de Pleroma, que se integra perfectamente con su backend y ofrece una interfaz tradicional de red social con muchas opciones de personalización.
+- **Mangan**: Un frontend simple y eficiente diseñado para aquellos que desean una experiencia de usuario más directa y limpia. Mangan es ligero y fácil de navegar.
 
 ### ActivityPub
 
-Ordo se integra al **protocolo ActivityPub**, el estándar abierto que habilita la comunicación y la interacción entre diferentes plataformas federadas. Esto significa que los usuarios de Ordo pueden interactuar con personas de otras redes sociales federadas (como Mastodon o PeerTube) de manera fluida, sin estar limitados a un único servicio. La adopción de ActivityPub coloca a Ordo dentro de un ecosistema federado, promoviendo la interoperabilidad y reduciendo la centralización.
-
-### Nostr
-
-Ordo también incorpora **Nostr**, una tecnología descentralizada de mensajería y redes sociales que permite la comunicación de usuarios sin la necesidad de servidores centrales. Nostr se basa en un sistema de claves públicas y privadas, ofreciendo un nivel de seguridad adicional y resistencia a la censura. Al integrar Nostr, Ordo fortalece su compromiso con la privacidad del usuario y la independencia de plataformas centralizadas.
-
-## Calidad y Fiabilidad
-
-Ordo no es solo una alternativa descentralizada, sino que se enfoca en ofrecer una experiencia de alta calidad y confiabilidad a sus usuarios. Gracias a su arquitectura robusta y escalable, Ordo garantiza tiempos de respuesta rápidos y un funcionamiento fluido, incluso con una gran cantidad de usuarios activos. La seguridad es una prioridad; todas las interacciones están protegidas con cifrado de extremo a extremo, asegurando que los datos y comunicaciones del usuario estén siempre protegidos de accesos no autorizados.
+Ordo está completamente integrado con el protocolo **ActivityPub**, lo que significa que los usuarios de Ordo pueden interactuar con personas de otras plataformas federadas sin perder control sobre su privacidad y sus datos. La adopción de ActivityPub garantiza una experiencia de usuario fluida al conectar Ordo con otras redes sociales descentralizadas como Mastodon, PeerTube, y muchas más.
 
 ## ¿Por qué elegir Ordo?
 
-- **Privacidad total**: A diferencia de las redes sociales tradicionales, Ordo pone a los usuarios en control de sus propios datos. No se recopila ni se comparte información personal sin el consentimiento explícito del usuario.
+- **Privacidad Total**: A diferencia de las redes sociales centralizadas, Ordo pone a los usuarios en control total de sus datos. No se recopila ni comparte información personal sin el consentimiento explícito del usuario.
   
-- **Descentralización**: Ordo está diseñado para funcionar sin un servidor central, lo que reduce el riesgo de censura y fallos en la plataforma. Los usuarios pueden confiar en que sus interacciones no están siendo monitoreadas ni manipuladas por un tercero.
+- **Descentralización Real**: Ordo opera sin depender de un servidor centralizado, lo que minimiza el riesgo de censura o fallos en la plataforma. Los usuarios pueden estar seguros de que sus interacciones no están siendo manipuladas por terceros.
 
-- **Comunidad activa**: Al estar basado en tecnologías abiertas y federadas, Ordo fomenta una comunidad global activa que valora la transparencia, la libertad de expresión y la autonomía digital.
+- **Interoperabilidad**: Gracias a la integración con ActivityPub y la compatibilidad con diversos frontends, Ordo no solo es una plataforma independiente, sino que se convierte en una puerta de entrada a un ecosistema federado y descentralizado, donde los usuarios pueden conectarse y colaborar con personas en otras redes sin perder privacidad.
 
-- **Interoperabilidad**: Gracias a su integración con ActivityPub y Nostr, Ordo no solo es una plataforma aislada, sino una puerta a un ecosistema de redes sociales federadas y descentralizadas. Los usuarios de Ordo pueden conectarse y colaborar con personas en otras plataformas sin perder la privacidad ni el control de sus datos.
+## Una Alternativa Ética y Privada
 
-## Una alternativa profesional y ética
+Ordo representa una alternativa ética y responsable a las redes sociales tradicionales, brindando a los usuarios control total sobre sus interacciones y datos. Con una base en Pleroma, que prioriza la eficiencia y el rendimiento, Ordo se posiciona como una de las plataformas más seguras y sostenibles para quienes buscan una experiencia de red social sin comprometer su privacidad.
 
-Ordo representa un cambio en la forma en que entendemos y usamos las redes sociales. Es una plataforma que pone a la comunidad y la seguridad del usuario en el centro de su diseño, promoviendo un entorno libre, transparente y ético. A medida que el mundo digital avanza hacia una mayor conciencia sobre la privacidad y la descentralización, Ordo se posiciona como una de las alternativas más profesionales y seguras para aquellos que buscan una experiencia de red social sin comprometer su libertad.
-
-Si estás buscando una red social que respete tu privacidad, fomente la libertad de expresión y te conecte con un ecosistema global de usuarios, **Ordo es la opción ideal**.
+Si deseas una red social descentralizada que respete tu privacidad y te permita interactuar con una comunidad global, **Ordo es la opción ideal**.

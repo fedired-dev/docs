@@ -1,290 +1,262 @@
 ---
 title = "Guia de instalacion"
-summary = "Como configurar todo lo que necesitas para ejecutar tu propio servidor Ordo."
+summary = "Como configurar todo lo que necesitas para ejecutar tu propio servidor Fedired."
 weight = 20
 [menu]
 [menu.docs]
-identifier = "ordo/install"
-parent = "ordo"
+identifier = "admin/installation"
+parent = "admin"
 ---
 
-# Instalación de Ordo
+# Instalación de Fedired
 
-Esta guía le enseñará cómo instalar Ordo en un VPS Linux (recomendamos Ubuntu)
-usando [deno](https://deno.com/), [systemd](https://systemd.io/)
-y [nginx](https://nginx.org/en/).
+Te recomendamos instalar Fedired en un VPS dedicado (servidor privado virtual) con Ubuntu 22.04 LTS. Asegúrate de que tu VPS esté funcionando correctamente antes de seguir esta guía.
 
-## 1. Configuración del sistema
+También necesitas tener un nombre de dominio adquirido. Crea un registro A en tu registrador apuntando a la dirección IP de tu VPS.
 
-### 1.a. Instalar actualizaciones
+## 1. Conexión al VPS
 
-> [!WARNING]
->
-> Si encuentras algún error durante el proceso de instalación, por favor abre un [Reportar Issues](https://github.com/fedired-dev/docs/issues). Asegúrate de proporcionar detalles sobre el problema, incluyendo el sistema operativo, los pasos seguidos y cualquier mensaje de error recibido. Esto nos ayudará a solucionar el problema más rápidamente.
-.
+Una vez que tu VPS esté en funcionamiento, deberás abrir un **programa de terminal** en tu computadora. Esto te permitirá conectarte remotamente al servidor para ejecutar comandos e instalar Fedired.
 
-Normalmente, un VPS nuevo ya tiene software desactualizado, por lo que debe ejecutar los siguientes comandos para actualizarlo:
+Los usuarios de Linux y Mac ya tienen un terminal instalado (se llama **"Terminal"**), pero los usuarios de Windows tal vez necesiten instalar [Cygwin](https://www.cygwin.com/) primero.
 
-::: code-group
-```sh [Ubuntu]
-sudo apt update
-sudo apt upgrade
-```
-```sh [Fedora]
-sudo dnf check-update
-sudo dnf update
-```
-```sh [Arch]
-sudo pacman -Syu
-```
-:::
-
-Cuando se le solicite (`[Y/n]`), escriba `Y` y presione Enter.
-
-### 1.b. Instalar dependencias del sistema
-
-Ordo depende de algún software de sistema adicional para funcionar. Instálelos con el siguiente comando:
-
-::: code-group
-```sh [Ubuntu]
-sudo apt install git curl unzip nginx postgresql-contrib certbot python3-certbot-nginx
-```
-```sh [Fedora]
-sudo rpm install git curl unzip nginx postgresql-contrib certbot python3-certbot-nginx
-```
-```sh [Arch]
-sudo pacman -S git curl unzip nginx postgresql-contrib certbot certbot-nginx
-```
-:::
-
-### 1.c. Instalar Deno
-
-Para instalar Deno en todo el sistema, ejecute:
+Una vez abierto el terminal, conéctate a tu servidor usando el nombre de usuario y la dirección IP proporcionada por tu proveedor de VPS. Es posible que te pida una contraseña.
 
 ```sh
-curl -fsSL https://deno.land/x/install/install.sh | sudo DENO_INSTALL=/usr/local sh -s v2.0.0
+ssh root@123.456.789
 ```
+## 2. Preparación del sistema
+Antes de instalar Fedired, necesitamos preparar el sistema.
 
-### 1.d. Cree el usuario Ordo
-
-Por razones de seguridad, es mejor ejecutar Ordo como un usuario independiente con acceso limitado.
-
-Crearemos este usuario y lo llamaremos `ordo`:
+### 2.a. Instalar actualizaciones
+Por lo general, un VPS recién creado ya tendrá software desactualizado, por lo que debes ejecutar los siguientes comandos para actualizarlo:
 
 ```sh
-sudo adduser ordo
+apt update
+apt upgrade
 ```
+Cuando se te pregunte ([Y/n]), escribe Y y presiona Enter.
 
-## 2. Instale Ordo
-
-Es hora de instalar Ordo. Pongamos todo en funcionamiento.
-
-### 2.a. Descargar código fuente
+### 2.b. Instalar dependencias del sistema
+Fedired requiere algunas dependencias del sistema para funcionar. Instálalas con el siguiente comando:
 
 ```sh
-git clone https://github.com/fedired-dev/ordo /opt/ordo
-chown -R ordo:ordo /opt/ordo
+apt install git curl build-essential postgresql postgresql-contrib cmake libmagic-dev imagemagick ffmpeg libimage-exiftool-perl nginx certbot unzip libssl-dev automake autoconf libncurses5-dev fasttext
 ```
 
-Ingresa al directorio del código fuente y conviértete en el usuario ordo:
+### 2.c. Crear el usuario de Fedired
+Por razones de seguridad, es mejor ejecutar Fedired como un usuario separado con acceso limitado.
+
+Vamos a crear este usuario y lo llamaremos fedired:
 
 ```sh
-cd /opt/ordo
-sudo su ordo
+useradd -r -s /bin/false -m -d /var/lib/pleroma -U pleroma
 ```
 
-### 2.b. Configurar Ordo
+## 3. Instalación de Nvus
+Es hora de instalar Nvus. Vamos a obtenerlo y ponerlo en funcionamiento.
 
-Ejecuta el siguiente comando para crear un archivo `.env`:
+3.a. Descargar el código fuente
+Descarga el código fuente de Fedired con Git:
 
 ```sh
-deno task setup
+git clone https://github.com/fedired-dev/nvus /opt/pleroma
+chown -R pleroma:pleroma /opt/pleroma
 ```
-
-Sigue las instrucciones en la terminal para configurar tu archivo `.env`. Toma nota de la contraseña de Postgres que ingreses aquí. La usaremos más adelante.
-
-> [!TIP]
-> Si eliges usar el cargador local para tener más control sobre los archivos cargados, tendrás que configurar una regla nginx adicional. Consulta "Configurar nginx" a continuación.
-
-### 2.c. Agregar Fedired
-
-Ordo puede servir para cualquier interfaz (o para ninguna), pero recomendamos usar Ordo para obtener la mejor experiencia.
-
-Ejecute este comando para instalar Fedired:
+Entra en el directorio del código fuente y conviértete en el usuario fedired:
 
 ```sh
-deno task fedired
+cd /opt/pleroma
+sudo -Hu pleroma bash
+```
+(Asegúrate de estar como el usuario fedired en `/opt/pleroma` para el resto de esta sección.)
+
+### 3.b. Instalar Elixir
+Fedired usa el lenguaje de programación Elixir (basado en Erlang). Es importante usar una versión específica de Erlang (24), así que utilizaremos el gestor de versiones asdf para instalarlo.
+
+Instala asdf
+ ```sh
+git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.10.0
+echo ". $HOME/.asdf/asdf.sh" >> ~/.bashrc
+echo ". $HOME/.asdf/completions/asdf.bash" >> ~/.bashrc
+exec bash
+asdf plugin-add erlang
+asdf plugin-add elixir
+ ```
+Finalmente, instala Erlang/Elixir:
+
+```sh
+asdf install
+```
+(Esto tomará unos 15 minutos. ☕)
+
+### 3.c. Compilar Fedired
+Instala las herramientas básicas de Elixir para la compilación:
+
+```sh
+mix local.hex --force
+mix local.rebar --force
 ```
 
-> [!TIP]
-> Puede volver a ejecutar este comando en cualquier momento para actualizar Fedired a la última versión.
+Obtén las dependencias de Elixir:
 
-### 2.d. Aprovisionar la base de datos
+```sh
+mix deps.get
+```
+Finalmente, compila Nvus:
 
-Si todavía es el usuario `ordo`, salga del shell:
+```sh
+MIX_ENV=prod mix compile
+```
+(Esto tomará unos 10 minutos. ☕)
+
+### 3.d. Generar la configuración
+Es hora de preconfigurar nuestra instancia. El siguiente comando configurará algunos aspectos básicos como tu nombre de dominio:
+
+```sh
+MIX_ENV=prod mix pleroma.instance gen
+```
+Si todo está correcto, renombra el archivo generado para que se cargue en tiempo de ejecución:
+
+```sh
+mv config/generated_config.exs config/prod.secret.exs
+```
+3.e. Provisionar la base de datos
+La sección anterior también creó un archivo llamado `config/setup_db.psql`, que puedes usar para crear la base de datos.
+
+Vuelve al usuario root para el resto de este documento:
 
 ```sh
 exit
 ```
-
-Cree un nuevo usuario y base de datos de Postgres para Ordo:
-
-```sh
-sudo -u postgres createuser -P ordo
-sudo -u postgres createdb ordo -O ordo
-```
-
-A continuación, configure la contraseña para el usuario de Postgres `ordo` recién creado.
+Ejecuta el archivo SQL como el usuario de Postgres:
 
 ```sh
-sudo -u ordo psql # Iniciar el cliente CLI de Postgres
-ALTER USER ordo PASSWORD '<your-database-password-here>'; # Escriba esto en el indicador de Postgres
-\q # Salir del cliente de Postgres
+sudo -Hu postgres psql -f config/setup_db.psql
 ```
-
-Asegúrese de que la contraseña que ingrese coincida con la que ingresó en el script de configuración anteriormente.
-
-### 2.e. Iniciar Ordo
-
-Copie el archivo de unidad systemd en la ubicación correcta:
+Ahora ejecuta la migración de la base de datos como el usuario `fedired`:
 
 ```sh
-sudo cp /opt/ordo/installation/ordo.service /etc/systemd/system/ordo.service
+sudo -Hu pleroma bash -i -c 'MIX_ENV=prod mix ecto.migrate'
 ```
-
-Recargue la configuración del administrador systemd:
+### 3.f. Iniciar Fedired
+Copia el servicio de systemd y arranca Fedired:
 
 ```sh
-sudo systemctl daemon-reload
+cp /opt/pleroma/installation/pleroma.service /etc/systemd/system/pleroma.service
+systemctl enable --now pleroma.service
 ```
 
-Habilite el servicio Ordo para que se inicie automáticamente al iniciar e inícielo inmediatamente:
+Si llegaste hasta aquí, ¡enhorabuena! Ya tienes el backend de Fedired funcionando, y solo falta hacerlo accesible al mundo exterior.
+
+## 4. Configuración en línea
+El último paso es hacer que tu servidor sea accesible desde el exterior. Para ello, vamos a instalar Nginx y habilitar el soporte de HTTPS.
+
+### 4.a. HTTPS
+Usaremos Certbot para obtener un certificado SSL.
+
+Primero, apaga Nginx:
 
 ```sh
-sudo systemctl enable --now ordo
-
-/usr/local/bin/deno task start
-
+systemctl stop nginx
 ```
-
-Ahora Ordo se está ejecutando. ¡Ya casi terminas!
-
-## 3. Conéctate
-
-El último paso es hacer que tu servidor sea accesible al mundo exterior. Lo lograremos instalando Nginx y habilitando la compatibilidad con HTTPS.
-
-### 3.a. Configurar Nginx
-
-Copia el archivo de configuración de Nginx en la ubicación correcta:
+Ahora puedes obtener el certificado:
 
 ```sh
-sudo cp /opt/ordo/installation/ordo.conf /etc/nginx/sites-enabled/ordo.conf
+mkdir -p /var/lib/letsencrypt/
+certbot certonly --email <tu@email> -d <tudominio> --standalone
 ```
+Reemplaza `<tu@email>` y `<tudominio>` con tus valores reales.
 
-A continuación, edita el archivo de configuración para reemplazar `example.com` con tu nombre de dominio:
+### IMPORTANTE
+Para VM o usarios de ver ajustes aqui [Cloudflare](/for-admins/cloudflare.md) 
+
+
+
+### 4.b. Nginx
+Copia la configuración de Nginx de ejemplo y actívala:
 
 ```sh
-sudo nano /etc/nginx/sites-enabled/ordo.conf
+cp /opt/pleroma/installation/pleroma.nginx /etc/nginx/sites-available/pleroma.nginx
+ln -s /etc/nginx/sites-available/pleroma.nginx /etc/nginx/sites-enabled/pleroma.nginx
 ```
 
-#### 3.b.i. Configurar nginx para que sirva cargas locales
-
-Si elegiste "Local" como el cargador anterior, debes configurar nginx para que sirva cargas locales desde el directorio que seleccionaste.
-
-```nginx
-server {
-server_name media.your.domain;
-
-location / {
-root </path/to/serve/local/files/from>;
-autoindex off; # Opcional: permite el listado de directorios. Recomendamos mantener esta opción desactivada.
-try_files $uri $uri/ =404;
-}
-
-error_page 404 /404.html;
-location = /404.html {
-intern;
-}
-}
-```
-
-### 3.b. Obtener un certificado SSL
-
-Ejecute el siguiente comando para obtener un certificado SSL de Let’s Encrypt:
+Debes editar este archivo:
 
 ```sh
-sudo certbot --nginx
+nano /etc/nginx/sites-enabled/pleroma.nginx
 ```
 
-Siga las indicaciones para obtener el certificado.
+Cambia todas las ocurrencias de `example.tld` por el nombre de dominio de tu sitio. Usa Ctrl+X, Y y Enter para guardar.
 
-### 3.c. Reiniciar Nginx
-
-Reinicie Nginx para aplicar los cambios:
+Finalmente, habilita y arranca Nginx:
 
 ```sh
-sudo systemctl restart nginx
+systemctl enable --now nginx.service
 ```
 
-🎉 ¡Felicitaciones, ya terminó! Verifique su sitio en un navegador y debería estar en línea.
+🎉 ¡Felicidades, ya terminaste! Revisa tu sitio en un navegador y debería estar en línea.
 
-## 4. Sincroniza tus datos existentes
-
-Si ya eres un usuario de Nostr, debes copiar los datos de tu perfil existente a Ordo antes de usarlo, o podría sobrescribir tu perfil. También puedes obtener los datos y publicaciones de tus amigos en tu instancia de Ordo. ¡Cuantos más, mejor!
-
-En el servidor que ejecuta ordo, ejecute el siguiente comando:
+## 5. Instalar Fedired
+Finalmente, ve a la ruta de instalacion:
 
 ```sh
-deno task nostr:pull <pubkey1> [pubkeys]... <relay1> [relays]...
+curl -L -o fedired.zip https://github.com/fedired-dev/fedired/archive/refs/heads/main.zip
+
+busybox unzip fedired.zip -o -d /opt/pleroma/instance/static
+
+mv /opt/pleroma/instance/static/fedired-main/* /opt/pleroma/instance/static
+
 ```
 
-Las claves públicas pueden ser entidades NIP-19 (es decir, npub1...) o cadenas codificadas en hexadecimal (algo así como `0574536d3ef4d65faf95b42393610b8475d22f4c294649d46c50d5d36f75267c`).
+## 6. Post-instalación
+A continuación, algunos pasos adicionales que puedes seguir después de finalizar la instalación.
 
-Si no desea importar publicaciones y solo obtener perfiles, puede ejecutar:
+Crear tu primer usuario
+
+Si tu instancia está en funcionamiento, puedes crear tu primer usuario con privilegios administrativos con la siguiente tarea:
 
 ```sh
-deno task nostr:pull --profiles-only <pubkey1> [pubkeys]... <relay1> [relays]...
+cd /opt/pleroma
+sudo -Hu pleroma bash -i -c 'MIX_ENV=prod mix pleroma.user new <usuario> <tu@email> --admin'
 ```
 
-## 5. Postinstalación
+Refresca tu sitio web. ¡Eso es todo!
 
-A continuación, se muestran algunos pasos adicionales que puede realizar después de finalizar la instalación.
+# 🎉 ¡Felicidades! 🎉
 
-### Promocionar un usuario a administrador
+¡Disfruta de tu nuevo servidor de Fedired! 🎈
 
-Para promover un usuario a administrador, ingrese al directorio de Ordo y ejecute el siguiente comando:
 
-```sh
-deno task admin:role <pubkey> admin
-```
+¡Bienvenido a la comunidad de Fedired! 🚀
 
-### Agregar relés
+## Instrucciones de actualización
 
-Para obtener datos en su servidor, debe agregar relés. Ordo almacenará todos los datos transmitidos desde estos relés.
-
-En Fedired, navegue a "Panel de control" > "Relés" y agregue los relés desde los que desea ingerir eventos. Reinicie el servidor Ordo (`systemctl restart ordo`) para que los cambios surtan efecto.
-
-### Actualizar Ordo
-
-Para actualizar Ordo, extraiga los últimos cambios del repositorio y reinicie el servicio:
+Para actualizar Nvus (el backend), entra al servidor y ejecuta los siguientes comandos:
 
 ```sh
-cd /opt/ordo
-su ordo
+sudo -Hu pleroma bash
+cd /opt/pleroma
+
 git pull origin main
+
+asdf install
+
+mix deps.get
+MIX_ENV=prod mix ecto.migrate
+
 exit
-sudo systemctl restart ordo
+systemctl restart pleroma
 ```
+## Fedired
 
-### Renovar el certificado SSL
-
-Para renovar el certificado SSL, ejecute:
+Para actualizar Fedired (frontend), acceda a su servidor y vuelva a ejecutar los comandos de instalación.
 
 ```sh
-sudo certbot renew
+curl -L -o fedired.zip https://github.com/fedired-dev/fedired/archive/refs/heads/main.zip
+
+busybox unzip fedired.zip -o -d /opt/pleroma/instance/static
+
+mv /opt/pleroma/instance/static/fedired-main/* /opt/pleroma/instance/static
 
 ```
-
-### Solución de problemas
-
-¿Algo no funciona correctamente? Por favor, [abre un problema](https://github.com/fedired-dev/ordo/-/issues/new) y te ayudaremos.
