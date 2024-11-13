@@ -35,6 +35,8 @@ export default defineConfig({
         items: [
           { text: 'Que es Ordo?', link: '/ordo/ordo' },
           { text: 'Instalación', link: '/ordo/install' },
+          { text: 'Interfaz', link: '/ordo/interface' },
+          { text: 'Actualización', link: '/ordo/update' },
         ]
       },
       {
