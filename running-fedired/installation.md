@@ -13,7 +13,7 @@ parent = "admin"
 No probamos Fedired en sistemas que no sean Linux, por lo que te recomendamos que instales Fedired en un entorno de este tipo **solo si puedes solucionar los problemas tú mismo**. No hay ningún tipo de soporte. Dicho esto, es posible instalar Fedired en algunos sistemas que no sean Linux.
 
 
->⚠️ [!Advertencia]
+> [!WARNING]
 > 
 >  Posible [configuración en Docker](https://github.com/fedired-dev/ordo/pkgs/container/ordo%2Fordo) esta forma de instalacion aun esta en Beta y puede no funcionar como se espera.
 
