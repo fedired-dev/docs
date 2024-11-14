@@ -49,6 +49,8 @@ sudo certbot certonly --dns-cloudflare --dns-cloudflare-credentials /etc/letsenc
 
 Este comando utilizará el plugin de Cloudflare para la validación del dominio y generar los certificados.
 
+## Vuelve a la [instalacion de Ordo](https://docs.fedired.com/ordo/install.html#_4-b-nginx)
+
 ## 5. Configuración de Renovación Automática
 
 Añade un cron job para renovar el certificado automáticamente:

@@ -72,9 +72,15 @@ Las instrucciones de instalación de PGroonga se pueden encontrar en [esta pagin
 sudo apt update
 sudo apt install -y build-essential postgresql-server-dev-16 libgroonga-dev
 git clone --recursive https://github.com/pgroonga/pgroonga.git
-cd pgroonga
+sudo add-apt-repository ppa:groonga/ppa
+sudo apt update
+sudo apt install groonga
+sudo apt install libgroonga-dev
+
+cd ~/pgroonga
 make
 sudo make install
+exit
 ls /usr/share/postgresql/16/extension/
 
 ```
