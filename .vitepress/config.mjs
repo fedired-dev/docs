@@ -38,6 +38,8 @@ export default defineConfig({
         items: [
           { text: 'Creditos', link: '/legal/creditos' },
           { text: 'Licencias', link: '/legal/licencias' },
+          { text: 'Terminos', link: '/legal/terms' },
+
         ]
       },
     ],
