@@ -58,4 +58,4 @@ En Fedired, la libertad de expresión y la privacidad son esenciales. No obstant
 
 **¿Tienes preguntas sobre estas limitaciones?**
 
-Si tienes alguna duda o necesitas más detalles sobre las limitaciones de las cuentas o el contenido permitido en Fedired, puedes consultar nuestro [Centro de Ayuda](enlace_a_centro_de_ayuda) o contactar a soporte a través de nuestro correo electrónico.
+Si tienes alguna duda o necesitas más detalles sobre las limitaciones de las cuentas o el contenido permitido en Fedired, puedes consultar nuestro [Centro de Ayuda](https://help.fedired.com) o contactar a soporte a través de nuestro correo electrónico.
