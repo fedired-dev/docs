@@ -6,26 +6,26 @@ hero:
   name: Fedired
   text: Una red social descentralizada 
   tagline: >-
-    Guia de construccion y mantenimiento
+    Centro de Ayuda
   image: /logo.png
   actions:
   - theme: brand
-    text: Instalación de Ordo
-    link: /ordo/install.md
+    text: Código de Conducta de Fedired
+    link: /cod/cod.md
   
 
 features:
-- icon: 🌱
-  title: Ordo
+- icon: 🔐
+  title: Administrar tu cuenta
   details: >-
-    🔒 Servidor Backend: Ordo es un servidor backend para crear redes sociales descentralizadas basado en pleroma!
-  link: /ordo/ordo.md
+    Ayuda con Cuentas bloqueadas o limitadas.
+  link: /cuentas/limitaciones.md
 
-- icon: ✨
-  title: Fedired
+- icon: 🤳
+  title: Seguridad y prevención
   details: >-
-    🌎 Fedired: Open-source, decentralized social media platform – Free forever! 🚀
-  link: /code-fedired/fedired.md
+    Acerca de la seguridad de la cuenta
+  link: /seguridad/cuentas.md
 
 
 ---
