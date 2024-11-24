@@ -3,9 +3,9 @@ import { defineConfig } from 'vitepress'
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
   lang: 'es-MX',
-  title: "Documentación de Fedired",
+  title: "Centro de Ayuda Fedired",
   base: "/",
-  description: "Documentación oficial de Fedired",
+  description: "Centro de ayuda y soporte para fedired",
   themeConfig: {
     logo: {
       light: '/logo-black.png',
@@ -17,10 +17,7 @@ export default defineConfig({
     // https://vitepress.dev/reference/default-theme-config
     nav: [
       { text: 'Inicio', link: '/' },
-      { text: 'Que es Fedired Dev', link: '/project/introduction'},
-      { text: 'Ordo', link: '/ordo/ordo' },
-      { text: 'Ayuda a Traducir Fedired', link: 'https://crowdin.com/project/fedired/' },
-      { text: 'Fedired Social Oficial', link: 'https://fedired.com' },
+      { text: 'Que es Fedired Social', link: '/project/fedired'},
     ],
 
     search: {
@@ -33,23 +30,14 @@ export default defineConfig({
       {
         text: '',
         items: [
-          { text: 'Que es Ordo?', link: '/ordo/ordo' },
-          { text: 'Instalación', link: '/ordo/install' },
-          { text: 'Interfaz', link: '/ordo/interface' },
-          { text: 'Actualización', link: '/ordo/update' },
+          { text: 'Que es Fedired?', link: '/project/fedired' },
         ]
       },
       {
-        text: 'Fedired',
+        text: 'Legal',
         items: [
-          { text: 'Instalación', link: '/running-fedired/installation' },
-        ]
-      },
-      {
-        text: 'Administradores',
-        items: [
-          { text: 'IMPORTANTE', link: '/for-admins/important' },
-          { text: 'Cloudflare Proxy', link: '/for-admins/cloudflare' },
+          { text: 'Creditos', link: '/legal/creditos' },
+          { text: 'Licencias', link: '/legal/licencias' },
         ]
       },
     ],
