@@ -29,12 +29,29 @@ export default defineConfig({
 
     sidebar: [
       {
-        text: 'w',
+        text: '',
         items: [
           { text: 'Que es Fedired?', link: '/project/fedired' },
         ]
       },
       {
+        text: 'Para usuarios de Fedired',
+        items: [
+          { text: 'Que es el Fediverso', link: '/tutorial/basics' },
+          { text: 'Reglas de la Comunidad', link: '/manual/vocab' },
+
+        ]
+      },
+      {
+        text: 'Para administradores de servidores',
+        items: [
+          { text: 'Instalar Fedired', link: '/project/install' },
+          { text: 'Actualizar Fedired', link: '/project/update' },
+          { text: 'Tips Utiles', link: '/manual/utils' },
+
+        ]
+       },
+       {
         text: 'Legal',
         items: [
           { text: 'Creditos', link: '/legal/creditos' },
