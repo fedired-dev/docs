@@ -33,7 +33,7 @@ features:
   title: Firmas HTTP
   details: >-
     Firmas de datos vinculados en Fedired
-  link: /manual/send#http-signatures
+  link: /manual/send#implementacion-en-fedired
 - icon: 🔐
   title: Protocolo de Seguridad
   details: >-
