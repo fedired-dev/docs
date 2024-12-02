@@ -5,7 +5,7 @@ description: >-
 
 hero:
   name: Fedired
-  text: 🌎 Fedired plataforma de redes sociales descentralizada y de código abierto. ¡Gratis para siempre! 🚀
+  text: 🌎 Fedired plataforma de redes sociales descentralizada 🚀
   tagline: >-
     Fedired es una plataforma de redes sociales descentralizada y de código abierto. Aprovechando el protocolo ActivityPub.
   image: /logo.png
