@@ -48,6 +48,7 @@ export default defineConfig({
           { text: 'Instalar Fedired', link: '/project/install' },
           { text: 'Actualizar Fedired', link: '/project/upgrade' },
           { text: 'Tips Utiles', link: '/manual/utils' },
+          { text: 'Control de Versiones', link: '/project/versions' },
 
         ]
        },
