@@ -12,7 +12,7 @@ hero:
   actions:
   - theme: brand
     text: Que es Fedired?
-    link: /intro.md
+    link: /project/fedired.md
   - theme: alt
     text: Licencias de Codigo Abierto
     link: /legal/licencias.md
