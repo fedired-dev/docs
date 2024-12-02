@@ -1,32 +1,46 @@
 ---
-# https://vitepress.dev/reference/default-theme-home-page
 layout: home
+description: >-
+ Fedired es una Software hecho en  TypeScript para crear aplicaciones de servidores federados basadas en ActivityPub y otros estándares, los llamados fediverse.
 
 hero:
   name: Fedired
-  text: Una red social descentralizada 
+  text: 🌎 Fedired plataforma de redes sociales descentralizada y de código abierto. ¡Gratis para siempre! 🚀
   tagline: >-
-    Centro de Ayuda
+    Fedired es una plataforma de redes sociales descentralizada y de código abierto. Aprovechando el protocolo ActivityPub.
   image: /logo.png
   actions:
   - theme: brand
-    text: Código de Conducta de Fedired
-    link: /cod/cod.md
-  
+    text: Que es Fedired?
+    link: /intro.md
+  - theme: alt
+    text: Licencias de Codigo Abierto
+    link: /legal/licencias.md
+  - theme: alt
+    text: Tutorial
+    link: /tutorial/basics.md
+  - theme: alt
+    text: GitHub
+    link: https://github.com/fedired-dev/
 
 features:
+- icon: 📚
+  title: Reglas de la comunidad
+  details: >-
+    Reglas de convivencia y conducta de Fedired Social y demas Instancias
+  link: /manual/vocab.md
+- icon: 🔗
+  title: Firmas HTTP
+  details: >-
+    Firmas de datos vinculados en Fedired
+  link: /manual/send#http-signatures
 - icon: 🔐
-  title: Administrar tu cuenta
+  title: Protocolo de Seguridad
   details: >-
-    Ayuda con Cuentas bloqueadas o limitadas.
-  link: /cuentas/limitaciones.md
-
-- icon: 🤳
-  title: Seguridad y prevención
-  details: >-
-    Acerca de la seguridad de la cuenta
-  link: /seguridad/cuentas.md
-
-
+    Reglas de seguridad internas y externas en Fedired Social
+  link: /manual/secure.md
+- icon: 🧩
+  title: Recursos Utiles
+  details: Recursos utiles para usuarios de Fedired y Administradores de Instancias 
+  link: /manual/utils.md
 ---
-
