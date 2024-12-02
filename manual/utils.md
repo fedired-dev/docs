@@ -3,7 +3,7 @@
 
 ## Actualizar la versión de Fedired
 
-Consulta las [instrucciones de actualización](./project/upgrade.md). Asegúrate de cambiar a usuario `fedired` y acceder al directorio de Fedired antes de ejecutar el comando `git`:
+Consulta las [instrucciones de actualización](https://help.fedired.com/project/upgrade.md). Asegúrate de cambiar a usuario `fedired` y acceder al directorio de Fedired antes de ejecutar el comando `git`:
 
 ```sh
 sudo su --login fedired
