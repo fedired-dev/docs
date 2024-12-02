@@ -17,6 +17,7 @@ export default defineConfig({
     // https://vitepress.dev/reference/default-theme-config
     nav: [
       { text: 'Inicio', link: '/' },
+      { text: 'Instalar Fedired', link: 'https://help.fedired.com/manual/pwa' },
       { text: 'Que es Fedired Social', link: '/project/fedired'},
     ],
 
@@ -28,7 +29,7 @@ export default defineConfig({
 
     sidebar: [
       {
-        text: '',
+        text: 'w',
         items: [
           { text: 'Que es Fedired?', link: '/project/fedired' },
         ]
