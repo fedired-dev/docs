@@ -33,17 +33,6 @@ El Fediverso utiliza varios **protocolos de federación** para permitir que las 
 >
 >  **ActivityPub** es el protocolo más utilizado por plataformas del Fediverso debido a su amplia adopción y estabilidad.
 
-#### Por qué **Fedired** usa ActivityPub
-
-**Fedired** utiliza **ActivityPub** porque:
-
-1. **Interoperabilidad**: ActivityPub permite que las instancias de diferentes plataformas se conecten y se comuniquen entre sí.
-2. **Descentralización**: No hay un único servidor centralizado; cada instancia tiene control sobre sus propios datos.
-3. **Estándar abierto**: Es un protocolo ampliamente documentado y adoptado, lo que garantiza su estabilidad y crecimiento.
-
-> [!WARNING]
->
->  Usar ActivityPub asegura que **Fedired** se pueda integrar fácilmente con otras plataformas del Fediverso, pero también implica estar sujeto a las decisiones y evolución del protocolo.
 
 ### 2. **OStatus**
 
