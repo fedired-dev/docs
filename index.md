@@ -4,8 +4,8 @@ description: >-
  Fedired es una Software hecho en  TypeScript para crear aplicaciones de servidores federados basadas en ActivityPub y otros estándares, los llamados fediverse.
 
 hero:
-  name: Fedired
-  text: 🌎 Fedired plataforma de redes sociales descentralizada 🚀
+  name: 🌎 Fedired 
+  text: plataforma de redes sociales descentralizada 🚀
   tagline: >-
     Fedired es una plataforma de redes sociales descentralizada y de código abierto. Aprovechando el protocolo ActivityPub.
   image: /logo.png
