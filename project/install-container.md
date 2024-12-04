@@ -66,7 +66,7 @@ docker-compose --version
 Primero, descarga o clona el repositorio de Fedired:
 
 ```bash
-git clone https://github.com/fedired-dev/fedired.git
+GIT_LFS_SKIP_SMUDGE=1 git clone https://iceshrimp.dev/iceshrimp/iceshrimp.git --depth=1
 cd fedired
 ```
 
@@ -76,8 +76,13 @@ Copia los archivos de configuración de ejemplo para personalizarlos según tu e
 
 ```bash
 cp docker-compose.example.yml docker-compose.yml
+nano docker-compose.yml
+
 cp .config/example.yml .config/default.yml
+nano .config/default.yml
+
 cp .config/docker_example.env .config/docker.env
+.config/docker.env
 ```
 
 #### 3.3. Editar los Archivos de Configuración
@@ -107,14 +112,9 @@ docker pull fedired/fedired
 
 Con los archivos de configuración listos, ahora podemos levantar los contenedores que ejecutarán Fedired.
 
-#### 5.1. Levantar la Base de Datos
-
-Primero, levantamos el contenedor de la base de datos (PostgreSQL) y esperamos a que se inicialice:
-
 ```bash
-docker-compose up db --detach
-# o si usas Podman
-podman-compose up db --detach
+docker compose pull
+
 ```
 
 Una vez el contenedor de base de datos esté en funcionamiento, ejecutamos el siguiente comando para habilitar las extensiones necesarias en PostgreSQL:
@@ -131,8 +131,6 @@ Ahora, podemos iniciar el contenedor de la aplicación (Fedired) y otros servici
 
 ```bash
 docker-compose up --detach
-# o si usas Podman
-podman-compose up --detach
 ```
 
 ### Paso 6: Acceder a la Interfaz Web
@@ -158,9 +156,9 @@ Cuando una nueva versión de Fedired esté disponible, puedes verificarlo median
 Para actualizar tu instalación de Fedired, primero asegúrate de que no haya contenedores de Fedired ejecutándose:
 
 ```bash
-docker-compose down
-# o si usas Podman
-podman-compose down
+docker compose pull
+docker compose down
+docker compose up -d
 ```
 
 Luego, descarga la última versión de la imagen de Fedired:
