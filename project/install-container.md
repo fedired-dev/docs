@@ -66,8 +66,7 @@ docker-compose --version
 Primero, descarga o clona el repositorio de Fedired:
 
 ```bash
-GIT_LFS_SKIP_SMUDGE=1 git clone https://iceshrimp.dev/iceshrimp/iceshrimp.git --depth=1
-cd fedired
+GIT_LFS_SKIP_SMUDGE=1 git clone https://github.com/fedired-dev/fedired.git --depth=1
 ```
 
 #### 3.2. Copiar los Archivos de Configuración de Ejemplo
