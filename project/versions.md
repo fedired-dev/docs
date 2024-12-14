@@ -1,5 +1,19 @@
 # Changelog de Fedired  
 
+## Versión v2.0.0
+**Fecha de lanzamiento:** 7 de diciembre de 2024  
+
+#### **Novedades**
+- **Mejor soporte para federación**: 
+  - Se han implementado actualizaciones importantes al protocolo de ActivityPub, mejorando la interoperabilidad con otros servidores y redes federadas.
+- **Opciones de personalización**:
+  - Nuevos parámetros para la interfaz de usuario y configuraciones del backend, permitiendo adaptaciones específicas a las necesidades de cada instancia.
+- **Documentación ampliada**:
+  - El archivo `README` ha sido actualizado con instrucciones detalladas para las nuevas funciones.
+  - Mejoras en los comentarios y en la documentación de despliegue de `Dockerfile`.
+
+---
+
 ## Versión v1.4.0  
 **Fecha de lanzamiento:** 23 de noviembre de 2024  
 
