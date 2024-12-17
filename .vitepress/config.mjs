@@ -1,6 +1,16 @@
 import { defineConfig } from 'vitepress'
 
 // https://vitepress.dev/reference/site-config
+const CUENTAS = {
+  text: "Cuentas",
+  items: [
+    { text: "Limitaciones de Uso", link: "/cuentas/limitaciones.md" },
+    { text: "Perfiles Verificados", link: "/cuentas/verified.md" },
+  ],
+  activeMatch: "/cuentas",
+};
+    
+
 export default defineConfig({
   lang: 'es-MX',
   title: "Centro de Ayuda Fedired",
@@ -12,11 +22,13 @@ export default defineConfig({
       dark: '/logo-white.png'
     },
 
+
     siteTitle: '',
 
     // https://vitepress.dev/reference/default-theme-config
     nav: [
       { text: 'Inicio', link: '/' },
+       MANUAL,
       { text: 'Aplicacion de Fedired', link: 'https://help.fedired.com/manual/pwa' },
       { text: 'Que es Fedired Social', link: '/project/fedired'},
     ],
