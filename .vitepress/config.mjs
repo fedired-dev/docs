@@ -1,17 +1,7 @@
 import { defineConfig } from 'vitepress'
-import { withMermaid } from "vitepress-plugin-mermaid";
 
 
 // https://vitepress.dev/reference/site-config
-const CUENTAS = {
-  text: "Cuentas",
-  items: [
-    { text: "Limitaciones de Uso", link: "/cuentas/limitaciones.md" },
-    { text: "Perfiles Verificados", link: "/cuentas/verified.md" },
-  ],
-  activeMatch: "/cuentas",
-};
-    
 
 export default defineConfig({
   lang: 'es-MX',
