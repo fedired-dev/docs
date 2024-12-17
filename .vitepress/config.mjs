@@ -20,7 +20,6 @@ export default defineConfig({
     // https://vitepress.dev/reference/default-theme-config
     nav: [
       { text: 'Inicio', link: '/' },
-       MANUAL,
       { text: 'Aplicacion de Fedired', link: 'https://help.fedired.com/manual/pwa' },
       { text: 'Que es Fedired Social', link: '/project/fedired'},
     ],
@@ -43,6 +42,8 @@ export default defineConfig({
         items: [
           { text: 'Que es el Fediverso', link: '/tutorial/basics' },
           { text: 'Reglas de la Comunidad', link: '/manual/vocab' },
+          { text: 'Limitaciones de Uso', link: '/cuentas/limitaciones' },
+          { text: 'Verificación', link: '/cuentas/verified' },
 
         ]
       },
