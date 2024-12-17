@@ -1,5 +1,23 @@
 # Changelog de Fedired  
 
+## Versión v2.0.1
+**Fecha de lanzamiento:** 17 de diciembre de 2024
+
+### Añadido
+- Implementación de perfiles verificados para los usuarios.
+- Nueva funcionalidad para probar contenedores de Docker directamente desde la aplicación.
+
+### Corregido
+- Mejoras en el `Dockerfile` para garantizar una configuración más robusta y estable.
+- Solución de errores en el complemento de notificaciones push que causaban fallos en ciertas condiciones.
+- Corrección de problemas en el menú de usuarios para mejorar la navegación.
+- Ajustes menores en la interfaz para corregir errores visuales.
+
+### Mejorado
+- Optimizaciones generales en la estructura del proyecto para soporte de las nuevas funciones.
+
+---
+
 ## Versión v2.0.0
 **Fecha de lanzamiento:** 7 de diciembre de 2024  
 
