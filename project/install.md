@@ -153,6 +153,8 @@ sudo apt install ffmpeg
 >
 > Después de iniciar su servidor, ¡por favor no cambie la URL! Hacerlo romperá la federación.
 
+1. Editar la configuración de URL.
+
     ```yaml
     url: https://your-server-domain.example.com  # change here
     port: 3000
@@ -163,7 +165,7 @@ sudo apt install ffmpeg
       db: fedired_db
       user: fedired
       pass: your-database-password  # and here
-    ```
+      ```
 
 ## 4. Construir Fedired
 
