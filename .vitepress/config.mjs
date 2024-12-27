@@ -50,6 +50,7 @@ export default defineConfig({
       {
         text: 'Para administradores de servidores',
         items: [
+          { text: 'Requisitos', link: '/project/requisitos' },
           { text: 'Instalar en Docker', link: '/project/install-container' },
           { text: 'Instalar Fedired', link: '/project/install' },
           { text: 'Actualizar Fedired', link: '/project/upgrade' },
