@@ -43,6 +43,7 @@ export default defineConfig({
           { text: 'Que es el Fediverso', link: '/tutorial/basics' },
           { text: 'Reglas de la Comunidad', link: '/manual/vocab' },
           { text: 'Limitaciones de Uso', link: '/cuentas/limitaciones' },
+          { text: 'Contraseña Olvidada', link: '/cuentas/pwd' },
           { text: 'Verificación', link: '/cuentas/verified' },
 
         ]
