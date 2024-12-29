@@ -1,5 +1,31 @@
 # Changelog de Fedired  
 
+
+## Versión v2.0.2-nvus.1
+
+#### **Actualizaciones Clave**  
+
+- **Mejoras en la Federación:**  
+  - Optimización del protocolo de comunicación entre nodos federados para garantizar una mayor eficiencia y estabilidad.  
+  - Soporte mejorado para la interoperabilidad con plataformas federadas adicionales, ampliando el alcance y conectividad.  
+
+- **Actualización de Seguridad:**  
+  - Incorporación de nuevas políticas de cifrado para proteger mejor los datos en tránsito y en reposo.  
+  - Parcheo de vulnerabilidades menores detectadas en versiones anteriores.  
+
+- **Mejoras en la Experiencia de Usuario:**  
+  - Rediseño de partes clave de la interfaz para simplificar la navegación y mejorar la accesibilidad.  
+  - Reducción en los tiempos de carga y mejoras en la velocidad de las interacciones.  
+
+- **Optimización del Rendimiento:**  
+  - Actualizaciones en el backend que reducen significativamente el uso de recursos en servidores de alta carga.  
+  - Mejora en el manejo de grandes volúmenes de tráfico simultáneo.  
+
+- **Corrección de Errores:**  
+  - Resolución de problemas menores reportados por los usuarios, relacionados con la sincronización de publicaciones y la gestión de notificaciones.
+  
+---
+
 ## Versión v2.0.1
 **Fecha de lanzamiento:** 17 de diciembre de 2024
 
