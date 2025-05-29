@@ -110,7 +110,7 @@ sudo apt install ffmpeg
     Si olvidó la contraseña que ingresó, puede restablecerla ejecutando `sudo -u postgres psql -c "ALTER USER fedired PASSWORD 'password';"`.
 2. Crear una base de datos
     ```sh
-    sudo -u postgres createdb --encoding='UTF8' --owner=fedired fedired_db
+    sudo -u postgres createdb --encoding='UTF8' --owner=fedired --template=template0 fedired_db
     ```
 3. Habilitar la extensión PGronnga
     ```sh
